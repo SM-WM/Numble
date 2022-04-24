@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		669B037F281538DC0022DC0B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		66D600E32814DFE30051332B /* Numble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D600E62814DFE30051332B /* NumbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbleApp.swift; sourceTree = "<group>"; };
 		66D600E82814DFE30051332B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -84,6 +85,7 @@
 		66D600DA2814DFE30051332B = {
 			isa = PBXGroup;
 			children = (
+				669B037F281538DC0022DC0B /* README.md */,
 				66D600E52814DFE30051332B /* Numble */,
 				66D600F62814DFE60051332B /* NumbleTests */,
 				66D601002814DFE60051332B /* NumbleUITests */,
