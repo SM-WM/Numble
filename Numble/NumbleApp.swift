@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct NumbleApp: App {
+    @StateObject var dm = NumbleDm()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GameView()
+                .environmentObject(dm)
         }
     }
 }
