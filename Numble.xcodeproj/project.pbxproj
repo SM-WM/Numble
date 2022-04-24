@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		66D600E72814DFE30051332B /* NumbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E62814DFE30051332B /* NumbleApp.swift */; };
+		66D600E92814DFE30051332B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E82814DFE30051332B /* ContentView.swift */; };
+		66D600EB2814DFE60051332B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D600EA2814DFE60051332B /* Assets.xcassets */; };
+		66D600EE2814DFE60051332B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D600ED2814DFE60051332B /* Preview Assets.xcassets */; };
+		66D600F82814DFE60051332B /* NumbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600F72814DFE60051332B /* NumbleTests.swift */; };
+		66D601022814DFE60051332B /* NumbleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D601012814DFE60051332B /* NumbleUITests.swift */; };
+		66D601042814DFE60051332B /* NumbleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D601032814DFE60051332B /* NumbleUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		66D600F42814DFE60051332B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66D600DB2814DFE30051332B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66D600E22814DFE30051332B;
+			remoteInfo = Numble;
+		};
+		66D600FE2814DFE60051332B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66D600DB2814DFE30051332B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66D600E22814DFE30051332B;
+			remoteInfo = Numble;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		66D600E32814DFE30051332B /* Numble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numble.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66D600E62814DFE30051332B /* NumbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbleApp.swift; sourceTree = "<group>"; };
+		66D600E82814DFE30051332B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		66D600EA2814DFE60051332B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		66D600ED2814DFE60051332B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		66D600F32814DFE60051332B /* NumbleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumbleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66D600F72814DFE60051332B /* NumbleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbleTests.swift; sourceTree = "<group>"; };
+		66D600FD2814DFE60051332B /* NumbleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumbleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66D601012814DFE60051332B /* NumbleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbleUITests.swift; sourceTree = "<group>"; };
+		66D601032814DFE60051332B /* NumbleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66D600E02814DFE30051332B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D600F02814DFE60051332B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D600FA2814DFE60051332B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		66D600DA2814DFE30051332B = {
+			isa = PBXGroup;
+			children = (
+				66D600E52814DFE30051332B /* Numble */,
+				66D600F62814DFE60051332B /* NumbleTests */,
+				66D601002814DFE60051332B /* NumbleUITests */,
+				66D600E42814DFE30051332B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		66D600E42814DFE30051332B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66D600E32814DFE30051332B /* Numble.app */,
+				66D600F32814DFE60051332B /* NumbleTests.xctest */,
+				66D600FD2814DFE60051332B /* NumbleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66D600E52814DFE30051332B /* Numble */ = {
+			isa = PBXGroup;
+			children = (
+				66D600E62814DFE30051332B /* NumbleApp.swift */,
+				66D600E82814DFE30051332B /* ContentView.swift */,
+				66D600EA2814DFE60051332B /* Assets.xcassets */,
+				66D600EC2814DFE60051332B /* Preview Content */,
+			);
+			path = Numble;
+			sourceTree = "<group>";
+		};
+		66D600EC2814DFE60051332B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				66D600ED2814DFE60051332B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		66D600F62814DFE60051332B /* NumbleTests */ = {
+			isa = PBXGroup;
+			children = (
+				66D600F72814DFE60051332B /* NumbleTests.swift */,
+			);
+			path = NumbleTests;
+			sourceTree = "<group>";
+		};
+		66D601002814DFE60051332B /* NumbleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				66D601012814DFE60051332B /* NumbleUITests.swift */,
+				66D601032814DFE60051332B /* NumbleUITestsLaunchTests.swift */,
+			);
+			path = NumbleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		66D600E22814DFE30051332B /* Numble */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66D601072814DFE60051332B /* Build configuration list for PBXNativeTarget "Numble" */;
+			buildPhases = (
+				66D600DF2814DFE30051332B /* Sources */,
+				66D600E02814DFE30051332B /* Frameworks */,
+				66D600E12814DFE30051332B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Numble;
+			productName = Numble;
+			productReference = 66D600E32814DFE30051332B /* Numble.app */;
+			productType = "com.apple.product-type.application";
+		};
+		66D600F22814DFE60051332B /* NumbleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66D6010A2814DFE60051332B /* Build configuration list for PBXNativeTarget "NumbleTests" */;
+			buildPhases = (
+				66D600EF2814DFE60051332B /* Sources */,
+				66D600F02814DFE60051332B /* Frameworks */,
+				66D600F12814DFE60051332B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66D600F52814DFE60051332B /* PBXTargetDependency */,
+			);
+			name = NumbleTests;
+			productName = NumbleTests;
+			productReference = 66D600F32814DFE60051332B /* NumbleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		66D600FC2814DFE60051332B /* NumbleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66D6010D2814DFE60051332B /* Build configuration list for PBXNativeTarget "NumbleUITests" */;
+			buildPhases = (
+				66D600F92814DFE60051332B /* Sources */,
+				66D600FA2814DFE60051332B /* Frameworks */,
+				66D600FB2814DFE60051332B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66D600FF2814DFE60051332B /* PBXTargetDependency */,
+			);
+			name = NumbleUITests;
+			productName = NumbleUITests;
+			productReference = 66D600FD2814DFE60051332B /* NumbleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		66D600DB2814DFE30051332B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					66D600E22814DFE30051332B = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					66D600F22814DFE60051332B = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 66D600E22814DFE30051332B;
+					};
+					66D600FC2814DFE60051332B = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 66D600E22814DFE30051332B;
+					};
+				};
+			};
+			buildConfigurationList = 66D600DE2814DFE30051332B /* Build configuration list for PBXProject "Numble" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 66D600DA2814DFE30051332B;
+			productRefGroup = 66D600E42814DFE30051332B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66D600E22814DFE30051332B /* Numble */,
+				66D600F22814DFE60051332B /* NumbleTests */,
+				66D600FC2814DFE60051332B /* NumbleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66D600E12814DFE30051332B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D600EE2814DFE60051332B /* Preview Assets.xcassets in Resources */,
+				66D600EB2814DFE60051332B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D600F12814DFE60051332B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D600FB2814DFE60051332B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		66D600DF2814DFE30051332B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D600E92814DFE30051332B /* ContentView.swift in Sources */,
+				66D600E72814DFE30051332B /* NumbleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D600EF2814DFE60051332B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D600F82814DFE60051332B /* NumbleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D600F92814DFE60051332B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D601022814DFE60051332B /* NumbleUITests.swift in Sources */,
+				66D601042814DFE60051332B /* NumbleUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		66D600F52814DFE60051332B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66D600E22814DFE30051332B /* Numble */;
+			targetProxy = 66D600F42814DFE60051332B /* PBXContainerItemProxy */;
+		};
+		66D600FF2814DFE60051332B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66D600E22814DFE30051332B /* Numble */;
+			targetProxy = 66D600FE2814DFE60051332B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		66D601052814DFE60051332B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		66D601062814DFE60051332B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66D601082814DFE60051332B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Numble/Preview Content\"";
+				DEVELOPMENT_TEAM = AVKF9KKJ78;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mwaniki.faraja.Numble;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		66D601092814DFE60051332B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Numble/Preview Content\"";
+				DEVELOPMENT_TEAM = AVKF9KKJ78;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mwaniki.faraja.Numble;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		66D6010B2814DFE60051332B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AVKF9KKJ78;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mwaniki.faraja.NumbleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Numble.app/Numble";
+			};
+			name = Debug;
+		};
+		66D6010C2814DFE60051332B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AVKF9KKJ78;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mwaniki.faraja.NumbleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Numble.app/Numble";
+			};
+			name = Release;
+		};
+		66D6010E2814DFE60051332B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AVKF9KKJ78;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mwaniki.faraja.NumbleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Numble;
+			};
+			name = Debug;
+		};
+		66D6010F2814DFE60051332B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AVKF9KKJ78;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mwaniki.faraja.NumbleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Numble;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66D600DE2814DFE30051332B /* Build configuration list for PBXProject "Numble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66D601052814DFE60051332B /* Debug */,
+				66D601062814DFE60051332B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66D601072814DFE60051332B /* Build configuration list for PBXNativeTarget "Numble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66D601082814DFE60051332B /* Debug */,
+				66D601092814DFE60051332B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66D6010A2814DFE60051332B /* Build configuration list for PBXNativeTarget "NumbleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66D6010B2814DFE60051332B /* Debug */,
+				66D6010C2814DFE60051332B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66D6010D2814DFE60051332B /* Build configuration list for PBXNativeTarget "NumbleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66D6010E2814DFE60051332B /* Debug */,
+				66D6010F2814DFE60051332B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 66D600DB2814DFE30051332B /* Project object */;
+}
