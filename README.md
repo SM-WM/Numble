@@ -82,5 +82,3 @@ Numble is a number game where the player needs to guess a 4 digit number in mult
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
-
-

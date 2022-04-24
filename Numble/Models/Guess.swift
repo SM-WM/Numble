@@ -12,9 +12,10 @@ struct Guess {
 //    var num: [Int] = [0, 0, 0, 0]
     var num = "    "
     var numArr: [String] { num.map { String($0) }}
-    var greens: Int = 0
-    var greenflipped: Bool = false
-    var yellows: Int = 0
-    var yellowflipped: Bool = false
+    var correct: Int = 0
+    var misplaced: Int = 0
+    var wrong: Int = 0
+    var scores = [Color](repeating: .systemBackground, count: 4)
+    var scoreFlipped = [Bool](repeating: false, count: 4)
     var bg = Color(.systemBackground)
 }
