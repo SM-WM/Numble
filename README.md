@@ -75,7 +75,26 @@ Numble is a number game where the player needs to guess a 4 digit number in mult
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
+
+#### Game
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | gameId        | String   | unique id for the game (default field) |
+   | player        | Pointer to User| current player |
+   | time          | Number   | time elapsed since game started|
+   | tries         | Array    | an array of guesses|
+   
+#### Guess
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | index         | Number   | trial number |
+   | guessNumber   | String   | 4 chars string |
+   | correct       | Number   | number of correct values in this trial|
+   | misplaced     | Number   | number of misplaced values in this trial|
+   | wrong         | Number   | number of wrong values in this trial|
+   
 ### Models
 [Add table of models]
 ### Networking
