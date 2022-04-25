@@ -16,13 +16,13 @@ struct keyButtonView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color.unused)
-                    .frame(width: 45, height: 60)
+                    .frame(width: 42, height: 60)
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(Color.primary, lineWidth: 2)
-                    .frame(width: 45, height: 60)
+                    .frame(width: 42, height: 60)
                 Text(num)
                     .font(.system(size: 20))
-                    .frame(width: 45, height: 60)
+                    .frame(width: 42, height: 60)
                     .foregroundColor(Color.primary)
             }
         }
