@@ -13,15 +13,24 @@ class NumbleDm: ObservableObject {
     init() {
         newGame()
     }
-    
+    // MARK: - Setup
     func newGame() {
         defaults()
     }
     
     func defaults() {
         guesses = []
-        for index in 0...5 {
+        for index in 0...10 {
             guesses.append(Guess(index: index))
         }
+    }
+    
+    // MARK: - Game
+    func enterNumber() {
+        
+    }
+    
+    func deleteChar() {
+        
     }
 }

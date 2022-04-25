@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Guess {
     let index: Int
-//    var num: [Int] = [0, 0, 0, 0]
     var num = "    "
     var numArr: [String] { num.map { String($0) }}
     var correct: Int = 0

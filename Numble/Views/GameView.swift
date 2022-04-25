@@ -14,13 +14,13 @@ struct GameView: View {
             VStack {
                 
                 Spacer()
-                    .frame(height: 8)
+                    .frame(height: 10)
                 
-                HStack (spacing: 5) {
+                HStack (spacing: 8) {
                     Text("00:56:40:88")
                         .fontWeight(.light)
                         .foregroundColor(Color.red)
-                        .frame(width: 235, height: 35, alignment: .center)
+                        .frame(width: 262, height: 40, alignment: .center)
                         .font(.system(size: 28, weight: .regular))
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
@@ -32,7 +32,7 @@ struct GameView: View {
                     
                     Text("score")
                         .fontWeight(.light)
-                        .frame(width: 55, height: 35, alignment: .center)
+                        .frame(width: 62, height: 40, alignment: .center)
                         .font(.system(size: 20, weight: .regular))
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
@@ -41,18 +41,27 @@ struct GameView: View {
                 }
                 
                 
-                ScrollView {
-                    LazyVStack(spacing: 5) {
+                ScrollView(showsIndicators: false) {
+                    LazyVStack(spacing: 10) {
                         Spacer()
-                            .frame(height: 1)
+                            .frame(height: 0)
                         GuessView(guess: $dm.guesses[0])
                         GuessView(guess: $dm.guesses[1])
                         GuessView(guess: $dm.guesses[2])
                         GuessView(guess: $dm.guesses[3])
                         GuessView(guess: $dm.guesses[4])
                         GuessView(guess: $dm.guesses[5])
+                        GuessView(guess: $dm.guesses[6])
+                        GuessView(guess: $dm.guesses[7])
+                        GuessView(guess: $dm.guesses[8])
                     }
                 }
+                
+//                Spacer()
+//                    .frame(height: 20)
+                
+                keyboardView()
+                    .padding(.top)
             }
             
             .navigationViewStyle(.stack)
