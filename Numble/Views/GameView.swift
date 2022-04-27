@@ -45,15 +45,10 @@ struct GameView: View {
                     LazyVStack(spacing: 10) {
                         Spacer()
                             .frame(height: 0)
-                        GuessView(guess: $dm.guesses[0])
-                        GuessView(guess: $dm.guesses[1])
-                        GuessView(guess: $dm.guesses[2])
-                        GuessView(guess: $dm.guesses[3])
-                        GuessView(guess: $dm.guesses[4])
-                        GuessView(guess: $dm.guesses[5])
-                        GuessView(guess: $dm.guesses[6])
-                        GuessView(guess: $dm.guesses[7])
-                        GuessView(guess: $dm.guesses[8])
+                        ForEach(0...8, id: \.self) {index in
+                            GuessView(guess: $dm.guesses[index])
+                        }
+
                     }
                 }
                 

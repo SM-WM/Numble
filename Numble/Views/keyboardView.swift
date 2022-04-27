@@ -19,11 +19,13 @@ struct keyboardView: View {
                 ForEach(keyboardFirstRow, id: \.self) { num in
                     keyButtonView(num: num)
                 }
+                .disabled(dm.disabledKeys)
+                .opacity(dm.disabledKeys ? 0.6 : 1)
             }
             
             HStack (spacing: 8) {
                 Button {
-                    dm.enterNumber()
+                    dm.deleteChar()
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
@@ -38,11 +40,16 @@ struct keyboardView: View {
                             .foregroundColor(Color.primary)
                     }
                 }
+                .disabled(!dm.inPlay || dm.currentNum.count ==  0)
+                .opacity((!dm.inPlay || dm.currentNum.count ==  0) ? 0.6 : 1)
+                
                 ForEach(keyboardSecondRow, id: \.self) { num in
                     keyButtonView(num: num)
                 }
+                .disabled(dm.disabledKeys)
+                .opacity(dm.disabledKeys ? 0.6 : 1)
                 Button {
-                    dm.deleteChar()
+                    dm.enterNumber()
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
@@ -57,6 +64,8 @@ struct keyboardView: View {
                             .foregroundColor(Color.primary)
                     }
                 }
+                .disabled(dm.currentNum.count < 4 || !dm.inPlay)
+                .opacity((dm.currentNum.count < 4 || !dm.inPlay) ? 0.6 : 1)
             }
         }
     }
@@ -65,5 +74,6 @@ struct keyboardView: View {
 struct keyboardView_Previews: PreviewProvider {
     static var previews: some View {
         keyboardView()
+            .environmentObject(NumbleDm())
     }
 }
