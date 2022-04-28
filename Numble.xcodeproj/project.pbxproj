@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66A8ACB0281B2F930032281A /* FlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A8ACAF281B2F930032281A /* FlipView.swift */; };
 		66D600E72814DFE30051332B /* NumbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E62814DFE30051332B /* NumbleApp.swift */; };
 		66D600E92814DFE30051332B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E82814DFE30051332B /* GameView.swift */; };
 		66D600EB2814DFE60051332B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D600EA2814DFE60051332B /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		669B037F281538DC0022DC0B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		66A8ACAF281B2F930032281A /* FlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipView.swift; sourceTree = "<group>"; };
 		66D600E32814DFE30051332B /* Numble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D600E62814DFE30051332B /* NumbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbleApp.swift; sourceTree = "<group>"; };
 		66D600E82814DFE30051332B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66A8ACAE281B2F530032281A /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				66A8ACAF281B2F930032281A /* FlipView.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		66D600DA2814DFE30051332B = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 		66D600E52814DFE30051332B /* Numble */ = {
 			isa = PBXGroup;
 			children = (
+				66A8ACAE281B2F530032281A /* Animations */,
 				66D601182815173A0051332B /* Models */,
 				66D60115281513630051332B /* Views */,
 				66D60112281510FA0051332B /* Extensions */,
@@ -306,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D60117281513C60051332B /* GuessView.swift in Sources */,
+				66A8ACB0281B2F930032281A /* FlipView.swift in Sources */,
 				66DF86D828164D0000D4B997 /* keyboardView.swift in Sources */,
 				66D600E92814DFE30051332B /* GameView.swift in Sources */,
 				66D601142815112B0051332B /* Color+Extension.swift in Sources */,

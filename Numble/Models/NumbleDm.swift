@@ -26,6 +26,7 @@ class NumbleDm: ObservableObject {
     // MARK: - Setup
     func newGame() {
         inPlay = true
+        tryIdx = 0
         defaults()
         digits.shuffle()
         selectedNum = Array(digits[0...3]).joined(separator: "")
@@ -54,13 +55,38 @@ class NumbleDm: ObservableObject {
     
     func enterNumber() {
         print("you guessed \(currentNum)")
+        if currentNum == selectedNum {
+            setScoreColors()
+            revealScores(for: tryIdx)
+            print("You Win")
+            print ("It took you \(tryIdx + 1) tries")
+            currentNum = ""
+            inPlay = false
+        } else {
+            setScoreColors()
+            revealScores(for: tryIdx)
+            currentNum = ""
+            tryIdx += 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.5 * 0.25) {
+                self.guesses.append(Guess(index: self.tryIdx))
+            }
+        }
         
+        print(guesses.count)
+        
+        
+    }
+    
+    func updateRow() {
+        guesses[tryIdx].num = currentNum.padding(toLength: 4, withPad: " ", startingAt: 0)
+    }
+    
+    func setScoreColors() {
         var misplaced: Int = 0
         var wrong: Int = 0
         
         // add greens and count yellows and greys
         for idx in 0...3 {
-            print(Array(currentNum)[idx] == Array(selectedNum)[idx])
             if (Array(currentNum)[idx] == Array(selectedNum)[idx]){
                 guesses[tryIdx].scoreColor.append(Color.correct)
             }
@@ -85,13 +111,14 @@ class NumbleDm: ObservableObject {
                 guesses[tryIdx].scoreColor.append(Color.wrong)
             }
         }
-        print(guesses[tryIdx].scoreColor)
-        tryIdx += 1
-        print(guesses.count)
     }
     
-    func updateRow() {
-        guesses[tryIdx].num = currentNum.padding(toLength: 4, withPad: " ", startingAt: 0)
+    func revealScores (for row: Int) {
+        for scoreIdx in 0...3 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(scoreIdx) * 0.25) {
+                self.guesses[row].scoreFlipped[scoreIdx].toggle()
+            }
+        }
     }
     
 }

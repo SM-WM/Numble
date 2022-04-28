@@ -10,6 +10,7 @@ import SwiftUI
 struct keyboardView: View {
     @EnvironmentObject var dm: NumbleDm
     var body: some View {
+        
         let keyboardFirstRow = "0123456".map{ String($0) }
         let keyboardSecondRow = "789".map{ String($0) }
         

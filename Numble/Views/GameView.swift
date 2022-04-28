@@ -10,7 +10,7 @@ import SwiftUI
 struct GameView: View {
     @EnvironmentObject var dm: NumbleDm
     var body: some View {
-        
+        let _ = print("\($dm.guesses.count)")
         NavigationView {
             VStack {
                 
@@ -46,7 +46,10 @@ struct GameView: View {
                     LazyVStack(spacing: 10) {
                         Spacer()
                             .frame(height: 0)
-                        GuessView(guess: $dm.guesses[0])
+                        ForEach(0...$dm.guesses.count - 1, id: \.self) { index in
+                            GuessView(guess: $dm.guesses[index])
+                        }
+//                        GuessView(guess: $dm.guesses[0])
                     }
                 }
                 
