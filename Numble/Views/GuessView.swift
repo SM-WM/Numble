@@ -34,7 +34,7 @@ struct GuessView: View {
                                 .stroke(Color.primary, lineWidth: 2)
                                 .frame(width: 28, height: 28)
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.correct)
+                                .fill(guess.scoreColor[0])
                             .frame(width: 28, height: 28)
                         }
                         
@@ -43,7 +43,7 @@ struct GuessView: View {
                                 .stroke(Color.primary, lineWidth: 2)
                                 .frame(width: 28, height: 28)
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.misplaced)
+                                .fill(guess.scoreColor[1])
                             .frame(width: 28, height: 28)
                         }
                     }
@@ -54,7 +54,7 @@ struct GuessView: View {
                                 .stroke(Color.primary, lineWidth: 2)
                                 .frame(width: 28, height: 28)
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.misplaced)
+                                .fill(guess.scoreColor[2])
                             .frame(width: 28, height: 28)
                         }
                         
@@ -63,7 +63,7 @@ struct GuessView: View {
                                 .stroke(Color.primary, lineWidth: 2)
                                 .frame(width: 28, height: 28)
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.wrong)
+                                .fill(guess.scoreColor[3])
                             .frame(width: 28, height: 28)
                         }
                         

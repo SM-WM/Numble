@@ -10,6 +10,7 @@ import SwiftUI
 struct GameView: View {
     @EnvironmentObject var dm: NumbleDm
     var body: some View {
+        
         NavigationView {
             VStack {
                 
@@ -46,19 +47,8 @@ struct GameView: View {
                         Spacer()
                             .frame(height: 0)
                         GuessView(guess: $dm.guesses[0])
-                        GuessView(guess: $dm.guesses[1])
-                        GuessView(guess: $dm.guesses[2])
-                        GuessView(guess: $dm.guesses[3])
-                        GuessView(guess: $dm.guesses[4])
-                        GuessView(guess: $dm.guesses[5])
-                        GuessView(guess: $dm.guesses[6])
-                        GuessView(guess: $dm.guesses[7])
-                        GuessView(guess: $dm.guesses[8])
                     }
                 }
-                
-//                Spacer()
-//                    .frame(height: 20)
                 
                 keyboardView()
                     .padding(.top)

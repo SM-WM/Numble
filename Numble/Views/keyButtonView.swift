@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct keyButtonView: View {
+    @EnvironmentObject var dm: NumbleDm
     var num: String
     var body: some View {
         Button {
-            
+            dm.addChar(digit: num)
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 5)
