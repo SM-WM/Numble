@@ -10,7 +10,7 @@ import SwiftUI
 struct GameView: View {
     @EnvironmentObject var dm: NumbleDm
     var body: some View {
-        let _ = print("\($dm.guesses.count)")
+
         NavigationView {
             VStack {
                 
@@ -18,15 +18,17 @@ struct GameView: View {
                     .frame(height: 10)
                 
                 HStack (spacing: 8) {
-                    Text("00:56:40:88")
-                        .fontWeight(.light)
-                        .foregroundColor(Color.red)
-                        .frame(width: 262, height: 40, alignment: .center)
-                        .font(.system(size: 28, weight: .regular))
-                        .overlay(
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.primary, lineWidth: 2)
-                                )
+                    
+                    Text("\(dm.timeString)")
+                            .font(.title.monospaced())
+                            .fontWeight(.light)
+                            .foregroundColor(Color.red)
+                            .frame(width: 262, height: 40, alignment: .center)
+                            .font(.system(size: 28, weight: .regular))
+                            .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.primary, lineWidth: 2)
+                                    )
                     
                     Spacer()
                         .frame(width: 6)
@@ -42,14 +44,13 @@ struct GameView: View {
                 }
                 
                 
-                ScrollView(showsIndicators: false) {
+                ScrollView(showsIndicators: true) {
                     LazyVStack(spacing: 10) {
                         Spacer()
                             .frame(height: 0)
                         ForEach(0...$dm.guesses.count - 1, id: \.self) { index in
                             GuessView(guess: $dm.guesses[index])
                         }
-//                        GuessView(guess: $dm.guesses[0])
                     }
                 }
                 

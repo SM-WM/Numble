@@ -10,8 +10,7 @@ import SwiftUI
 struct GuessView: View {
     @Binding var guess: Guess
     var body: some View {
-//        let _ = print(Color.primary)
-//        let _ = print(guess.scoreColor[2])
+
         VStack {
             HStack(spacing: 8) {
                 ForEach(0...3, id: \.self) { index in
@@ -20,13 +19,12 @@ struct GuessView: View {
                         .fontWeight(.regular)
                         .foregroundColor(.primary)
                         .frame(width: 60, height: 60, alignment: .center)
-                        .background(Color.systemBackground)
+                        .background(guess.bg)
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.primary, lineWidth: 2)
                                 )
                 }
-                .opacity(0.6)
                 
                 Spacer()
                     .frame(width: 6)
@@ -34,99 +32,47 @@ struct GuessView: View {
                 VStack (spacing: 6) {
                     
                     HStack (spacing: 6) {
-                        
-                        
-                            FlipView(isFlipped: $guess.scoreFlipped[0]) {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.primary, lineWidth: 2)
-                                        .frame(width: 28, height: 28)
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .fill(Color.systemBackground)
-                                        .frame(width: 28, height: 28)
-                                }
-                            } back: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.primary, lineWidth: 2)
-                                        .frame(width: 28, height: 28)
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .fill(guess.scoreColor[0])
-                                        .frame(width: 28, height: 28)
-                                }
-                            }
-                        
-                        
-                            FlipView(isFlipped: $guess.scoreFlipped[1]) {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.primary, lineWidth: 2)
-                                        .frame(width: 28, height: 28)
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .fill(Color.systemBackground)
-                                        .frame(width: 28, height: 28)
-                                }
-                            } back: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.primary, lineWidth: 2)
-                                        .frame(width: 28, height: 28)
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .fill(guess.scoreColor[1])
-                                        .frame(width: 28, height: 28)
-                                }
-                            }
-                        
-                        
+                        scoreTile(guess: $guess, idx: 0)
+                        scoreTile(guess: $guess, idx: 1)
                     }
                     
                     HStack (spacing: 6) {
-                            
-                        FlipView(isFlipped: $guess.scoreFlipped[2]) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.primary, lineWidth: 2)
-                                    .frame(width: 28, height: 28)
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(Color.systemBackground)
-                                    .frame(width: 28, height: 28)
-                            }
-                        } back: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.primary, lineWidth: 2)
-                                    .frame(width: 28, height: 28)
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(guess.scoreColor[2])
-                                    .frame(width: 28, height: 28)
-                            }
-                        }
-                        
-                        
-                        FlipView(isFlipped: $guess.scoreFlipped[3]) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.primary, lineWidth: 2)
-                                    .frame(width: 28, height: 28)
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(Color.systemBackground)
-                                    .frame(width: 28, height: 28)
-                            }
-                        } back: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.primary, lineWidth: 2)
-                                    .frame(width: 28, height: 28)
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(guess.scoreColor[3])
-                                    .frame(width: 28, height: 28)
-                            }
-                        }
+                        scoreTile(guess: $guess, idx: 2)
+                        scoreTile(guess: $guess, idx: 3)
                     }
                 }
-                
             }
-            
+        }
+    }
+}
+
+struct scoreTile: View {
+    
+    @Binding var guess: Guess
+    
+    let idx: Int
+    let cornerRadius = 5.0
+    let tileSize = 28.0
+    
+    var body: some View {
+        FlipView(isFlipped: $guess.scoreFlipped[idx]) {
+            ZStack {
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color.primary, lineWidth: 2)
+                    .frame(width: tileSize, height: tileSize)
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(Color.systemBackground)
+                    .frame(width: tileSize, height: tileSize)
+            }
+        } back: {
+            ZStack {
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color.primary, lineWidth: 2)
+                    .frame(width: tileSize, height: tileSize)
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(guess.scoreColor[idx])
+                    .frame(width: tileSize, height: tileSize)
+            }
         }
     }
 }
