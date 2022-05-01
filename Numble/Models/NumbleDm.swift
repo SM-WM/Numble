@@ -4,54 +4,47 @@
 //
 //  Created by Walter Mwaniki on 4/24/22.
 //
-
 import SwiftUI
 
 class NumbleDm: ObservableObject {
-    
     @Published var guesses: [Guess] = []
     @Published var toastText: String?
     
+    var digits: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var selectedNum: String = ""
     var currentNum: String = ""
     var tryIdx = 0
-    
     var inPlay = false
+    
     var disableKeyboard: Bool { !inPlay || currentNum.count == 4 }
     
     init() {
         newGame()
     }
     
-    // MARK: - Setup
-    func newGame() {
-        inPlay = true
-        resetDefaults()
-        selectRandomNumber()
-        print("selected number is \(selectedNum)")
-    }
-    
-    
-    // MARK: - Game
-    func selectRandomNumber() {
-        var digits: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-        digits.shuffle()
-        selectedNum = Array(digits[0...3]).joined(separator: "")
-        currentNum = ""
-        timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { timer in
-            self.timeElapsed += 1
-        }
-        print("selected number is \(selectedNum)")
-        print(guesses)
-    }
-    
-    func resetDefaults() {
-        guesses = []
-        tryIdx = 0
-        timeElapsed = 0
-        currentNum = ""
-        guesses.append(Guess(index: tryIdx))
-    }
+// MARK: - Setup
+   func newGame() {
+       inPlay = true
+       resetDefaults()
+       selectRandomNumber()
+       print("selected number is \(selectedNum)")
+   }
+   
+   
+   // MARK: - Game
+   func selectRandomNumber() {
+       var digits: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+       digits.shuffle()
+       selectedNum = Array(digits[0...3]).joined(separator: "")
+   }
+   
+   func resetDefaults() {
+       guesses = []
+       tryIdx = 0
+       timeElapsed = 0
+       currentNum = ""
+       guesses.append(Guess(index: tryIdx))
+   }
     
     func addChar(digit: String) {
         currentNum += digit
@@ -143,25 +136,30 @@ class NumbleDm: ObservableObject {
         }
     }
     
-    // MARK: - Time
+    //MARK: Time
     
-    var timer = Timer()
+   var timer = Timer()
+   
+   @Published var timeElapsed = 0.01
+   
+   func startTimer() {
+       timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+           self.timeElapsed += 1
+       }
+   }
+   
+   func timeConverter(_ msecs: Int) -> (Int, Int, Int, Int) {
+       return (msecs / 360000, (msecs % 360000) / 6000, ((msecs % 360000) % 6000) / 100, ((msecs % 360000) % 6000) % 100)
+   }
+   
+   var timeString: String {
+       let (hours, minutes, seconds, mseconds) = timeConverter(Int(timeElapsed))
+       return "\(hours)".paddingToLeft(upTo: 2, using: "0")  + ":" + "\(minutes)".paddingToLeft(upTo: 2, using: "0") + ":" + "\(seconds)".paddingToLeft(upTo: 2, using: "0") + ":" + "\(mseconds)".paddingToLeft(upTo: 2, using: "0")
+   }
     
-    @Published var timeElapsed = 0.01
+    // MARK: Toast
     
-    func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
-            self.timeElapsed += 1
-        }
-    }
-    
-    func timeConverter(_ msecs: Int) -> (Int, Int, Int, Int) {
-        return (msecs / 360000, (msecs % 360000) / 6000, ((msecs % 360000) % 6000) / 100, ((msecs % 360000) % 6000) % 100)
-    }
-    
-    var timeString: String {
-        let (hours, minutes, seconds, mseconds) = timeConverter(Int(timeElapsed))
-        return "\(hours)".paddingToLeft(upTo: 2, using: "0")  + ":" + "\(minutes)".paddingToLeft(upTo: 2, using: "0") + ":" + "\(seconds)".paddingToLeft(upTo: 2, using: "0") + ":" + "\(mseconds)".paddingToLeft(upTo: 2, using: "0")
+    var toastWords = ["Genius", "Genius", "Magnificent", "Magnificent", "Impressive", "Splendid", "Splendid", "Great"]
     func showToast(with text: String?){
         withAnimation {
             toastText = text

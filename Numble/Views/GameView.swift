@@ -4,99 +4,60 @@
 //
 //  Created by Walter Mwaniki on 4/23/22.
 //
-
 import SwiftUI
 
 struct GameView: View {
     @EnvironmentObject var dm: NumbleDm
-    
     @State private var showHelp = false
+    
     var body: some View {
 
-        ZStack {
-            NavigationView {
-                VStack {
+        NavigationView {
+            VStack {
+                
+                Spacer()
+                    .frame(height: 10)
+                
+                HStack (spacing: 8) {
                     
-                    Spacer()
-                        .frame(height: 10)
-                    
-                    HStack (spacing: 8) {
-                        
-                        Text("\(dm.timeString)")
-                                .font(.title.monospaced())
-                                .fontWeight(.light)
-                                .foregroundColor(Color.red)
-                                .frame(width: 262, height: 40, alignment: .center)
-                                .font(.system(size: 28, weight: .regular))
-                                .overlay(
-                                        RoundedRectangle(cornerRadius: 5)
-                                            .stroke(Color.primary, lineWidth: 2)
-                                        )
-                        
-                        Spacer()
-                            .frame(width: 6)
-                        
-                        Text("score")
+                    Text("\(dm.timeString)")
+                            .font(.title.monospaced())
                             .fontWeight(.light)
-                            .frame(width: 62, height: 40, alignment: .center)
-                            .font(.system(size: 20, weight: .regular))
+                            .foregroundColor(Color.red)
+                            .frame(width: 262, height: 40, alignment: .center)
+                            .font(.system(size: 28, weight: .regular))
                             .overlay(
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.primary, lineWidth: 2)
                                     )
-                    }
                     
+                    Spacer()
+                        .frame(width: 6)
                     
-                    ScrollView(showsIndicators: true) {
-                        LazyVStack(spacing: 10) {
-                            Spacer()
-                                .frame(height: 0)
-                            ForEach(0...$dm.guesses.count - 1, id: \.self) { index in
-                                GuessView(guess: $dm.guesses[index])
-                            }
-                        }
-                    }
-                    
-                    keyboardView()
-                        .padding(.top)
+                    Text("score")
+                        .fontWeight(.light)
+                        .frame(width: 62, height: 40, alignment: .center)
+                        .font(.system(size: 20, weight: .regular))
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.primary, lineWidth: 2)
+                                )
                 }
                 
-                .navigationViewStyle(.stack)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            HStack {
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "gearshape.fill")
-                                }
-                                Button {
-                                    showHelp.toggle()
-                                } label: {
-                                    Image(systemName: "questionmark.circle")
-                                }
-                            }
-                        }
-                        ToolbarItem(placement: .principal) {
-                            Text("Numble")
-                                .font(.largeTitle)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.primary)
-                        }
-                        
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button {
-                                
-                            } label: {
-                                Image(systemName: "chart.bar")
-                            }
+                
+                ScrollView(showsIndicators: true) {
+                    LazyVStack(spacing: 10) {
+                        Spacer()
+                            .frame(height: 0)
+                        ForEach(0...$dm.guesses.count - 1, id: \.self) { index in
+                            GuessView(guess: $dm.guesses[index])
                         }
                     }
+                }
+                
+                keyboardView()
+                    .padding(.top)
             }
-        }
-        .sheet(isPresented: $showHelp) {
-            HelpView()
 
             
             .navigationViewStyle(.stack)
@@ -110,7 +71,7 @@ struct GameView: View {
                                 Image(systemName: "gearshape.fill")
                             }
                             Button {
-                                
+                                showHelp.toggle()
                             } label: {
                                 Image(systemName: "questionmark.circle")
                             }
@@ -141,6 +102,9 @@ struct GameView: View {
                         }
                     }
                 }
+                .sheet(isPresented: $showHelp) {
+                            HelpView()
+                        }
                         .overlay(alignment: .top){
                             if let toastText = dm.toastText{
                                 ToastView(toastText: toastText)
