@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66744928281E302A001985D3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66744927281E302A001985D3 /* HelpView.swift */; };
 		66A8ACB0281B2F930032281A /* FlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A8ACAF281B2F930032281A /* FlipView.swift */; };
 		66D600E72814DFE30051332B /* NumbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E62814DFE30051332B /* NumbleApp.swift */; };
 		66D600E92814DFE30051332B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E82814DFE30051332B /* GameView.swift */; };
@@ -19,7 +20,7 @@
 		66D601142815112B0051332B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D601132815112B0051332B /* Color+Extension.swift */; };
 		66D60117281513C60051332B /* GuessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D60116281513C60051332B /* GuessView.swift */; };
 		66D6011A2815174D0051332B /* Guess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D601192815174D0051332B /* Guess.swift */; };
-		66D6011C281521A00051332B /* NumbleDm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D6011B281521A00051332B /* NumbleDm.swift */; };
+		66D6011C281521A00051332B /* NumbleDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D6011B281521A00051332B /* NumbleDataModel.swift */; };
 		66DF86D62816490700D4B997 /* keyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DF86D52816490700D4B997 /* keyButtonView.swift */; };
 		66DF86D828164D0000D4B997 /* keyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DF86D728164D0000D4B997 /* keyboardView.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66744927281E302A001985D3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		669B037F281538DC0022DC0B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		66A8ACAF281B2F930032281A /* FlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipView.swift; sourceTree = "<group>"; };
 		66D600E32814DFE30051332B /* Numble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numble.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +60,7 @@
 		66D601132815112B0051332B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		66D60116281513C60051332B /* GuessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessView.swift; sourceTree = "<group>"; };
 		66D601192815174D0051332B /* Guess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guess.swift; sourceTree = "<group>"; };
-		66D6011B281521A00051332B /* NumbleDm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbleDm.swift; sourceTree = "<group>"; };
+		66D6011B281521A00051332B /* NumbleDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbleDataModel.swift; sourceTree = "<group>"; };
 		66DF86D52816490700D4B997 /* keyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyButtonView.swift; sourceTree = "<group>"; };
 		66DF86D728164D0000D4B997 /* keyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +174,7 @@
 				66D60116281513C60051332B /* GuessView.swift */,
 				66DF86D52816490700D4B997 /* keyButtonView.swift */,
 				66DF86D728164D0000D4B997 /* keyboardView.swift */,
+				66744927281E302A001985D3 /* HelpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,7 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				66D601192815174D0051332B /* Guess.swift */,
-				66D6011B281521A00051332B /* NumbleDm.swift */,
+				66D6011B281521A00051332B /* NumbleDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -319,11 +322,12 @@
 				66D60117281513C60051332B /* GuessView.swift in Sources */,
 				66A8ACB0281B2F930032281A /* FlipView.swift in Sources */,
 				66DF86D828164D0000D4B997 /* keyboardView.swift in Sources */,
+				66744928281E302A001985D3 /* HelpView.swift in Sources */,
 				66D600E92814DFE30051332B /* GameView.swift in Sources */,
 				66D601142815112B0051332B /* Color+Extension.swift in Sources */,
 				66D600E72814DFE30051332B /* NumbleApp.swift in Sources */,
 				66D6011A2815174D0051332B /* Guess.swift in Sources */,
-				66D6011C281521A00051332B /* NumbleDm.swift in Sources */,
+				66D6011C281521A00051332B /* NumbleDataModel.swift in Sources */,
 				66DF86D62816490700D4B997 /* keyButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

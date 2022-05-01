@@ -7,32 +7,16 @@
 
 import SwiftUI
 
-class NumbleDm: ObservableObject {
+class NumbleDataModel: ObservableObject {
+    
     @Published var guesses: [Guess] = []
     
-    var digits: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var selectedNum: String = ""
     var currentNum: String = ""
     var tryIdx = 0
+    
     var inPlay = false
-    
-    @Published var timeElapsed = 0.0
-    var timeString: String {
-//        let milliseconds = "\((self.timeElapsed % 3600) % 60)".paddingToLeft(upTo: 2, using: "0")
-//        let seconds = "\((self.timeElapsed / 1000) % 60)".paddingToLeft(upTo: 2, using: "0")
-//        let minutes = "\((self.timeElapsed / (1000*60)) % 60)".paddingToLeft(upTo: 2, using: "0")
-//        let hours = "\((self.timeElapsed / (1000*60*60)) % 24)".paddingToLeft(upTo: 2, using: "0")
-        let hours = "\(Int((self.timeElapsed / (1000 * 60 * 60)).truncatingRemainder(dividingBy: 24)))".paddingToLeft(upTo: 2, using: "0")
-        let minutes = "\(Int((self.timeElapsed / (1000 * 60)).truncatingRemainder(dividingBy: 60)))".paddingToLeft(upTo: 2, using: "0")
-        let seconds = "\(Int((self.timeElapsed / 1000).truncatingRemainder(dividingBy: 60)))".paddingToLeft(upTo: 2, using: "0")
-        let milliseconds = "\(Int((self.timeElapsed).truncatingRemainder(dividingBy: 1000)))".paddingToLeft(upTo: 3, using: "0")
-        
-        return hours + ":" + minutes + ":" + seconds + ":" + milliseconds}
-    var timer = Timer()
-    
-    var disableKeyboard: Bool {
-        !inPlay || currentNum.count == 4
-    }
+    var disableKeyboard: Bool { !inPlay || currentNum.count == 4 }
     
     init() {
         newGame()
@@ -41,24 +25,27 @@ class NumbleDm: ObservableObject {
     // MARK: - Setup
     func newGame() {
         inPlay = true
-        tryIdx = 0
-        defaults()
-        digits.shuffle()
-        selectedNum = Array(digits[0...3]).joined(separator: "")
-        currentNum = ""
-        timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { timer in
-            self.timeElapsed += 1
-        }
+        resetDefaults()
+        selectRandomNumber()
         print("selected number is \(selectedNum)")
     }
     
-    func defaults() {
-        guesses = []
-        guesses.append(Guess(index: tryIdx))
-        timeElapsed = 0
-    }
     
     // MARK: - Game
+    func selectRandomNumber() {
+        var digits: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        digits.shuffle()
+        selectedNum = Array(digits[0...3]).joined(separator: "")
+    }
+    
+    func resetDefaults() {
+        guesses = []
+        tryIdx = 0
+        timeElapsed = 0
+        currentNum = ""
+        guesses.append(Guess(index: tryIdx))
+    }
+    
     func addChar(digit: String) {
         currentNum += digit
         updateRow()
@@ -82,6 +69,9 @@ class NumbleDm: ObservableObject {
             currentNum = ""
             inPlay = false
         } else {
+            if tryIdx == 0 {
+                startTimer()
+            }
             setScoreColors()
             revealScores(for: tryIdx)
             currentNum = ""
@@ -93,8 +83,6 @@ class NumbleDm: ObservableObject {
         }
         
         print(guesses.count)
-        
-        
     }
     
     func updateRow() {
@@ -139,6 +127,27 @@ class NumbleDm: ObservableObject {
                 self.guesses[row].scoreFlipped[scoreIdx].toggle()
             }
         }
+    }
+    
+    // MARK: - Time
+    
+    var timer = Timer()
+    
+    @Published var timeElapsed = 0.01
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+            self.timeElapsed += 1
+        }
+    }
+    
+    func timeConverter(_ msecs: Int) -> (Int, Int, Int, Int) {
+        return (msecs / 360000, (msecs % 360000) / 6000, ((msecs % 360000) % 6000) / 100, ((msecs % 360000) % 6000) % 100)
+    }
+    
+    var timeString: String {
+        let (hours, minutes, seconds, mseconds) = timeConverter(Int(timeElapsed))
+        return "\(hours)".paddingToLeft(upTo: 2, using: "0")  + ":" + "\(minutes)".paddingToLeft(upTo: 2, using: "0") + ":" + "\(seconds)".paddingToLeft(upTo: 2, using: "0") + ":" + "\(mseconds)".paddingToLeft(upTo: 2, using: "0")
     }
     
     

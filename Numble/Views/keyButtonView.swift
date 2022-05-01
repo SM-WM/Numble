@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct keyButtonView: View {
-    @EnvironmentObject var dm: NumbleDm
+    @EnvironmentObject var dm: NumbleDataModel
     var num: String
     var body: some View {
         Button {
