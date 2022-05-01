@@ -12,7 +12,7 @@ struct GuessView: View {
     @Binding var guess: Guess
     var body: some View {
 
-        VStack {
+        HStack (spacing: Global.colSpacing*4) {
             HStack(spacing: Global.colSpacing) {
                 ForEach(0...3, id: \.self) { index in
                     Text(guess.numArr[index])
@@ -27,20 +27,18 @@ struct GuessView: View {
                                 )
                 }
                 
-                Spacer()
-                    .frame(width: 6)
+            }
                 
-                VStack (spacing: Global.tinySpacing) {
-                    
-                    HStack (spacing: Global.tinySpacing) {
-                        scoreTile(guess: $guess, idx: 0)
-                        scoreTile(guess: $guess, idx: 1)
-                    }
-                    
-                    HStack (spacing: Global.tinySpacing) {
-                        scoreTile(guess: $guess, idx: 2)
-                        scoreTile(guess: $guess, idx: 3)
-                    }
+            VStack (spacing: Global.tinySpacing) {
+                
+                HStack (spacing: Global.tinySpacing) {
+                    scoreTile(guess: $guess, idx: 0)
+                    scoreTile(guess: $guess, idx: 1)
+                }
+                
+                HStack (spacing: Global.tinySpacing) {
+                    scoreTile(guess: $guess, idx: 2)
+                    scoreTile(guess: $guess, idx: 3)
                 }
             }
         }
@@ -52,25 +50,23 @@ struct scoreTile: View {
     @Binding var guess: Guess
     
     let idx: Int
-    let cornerRadius = 5.0
-//    let tileSize = 28.0
     
     var body: some View {
         FlipView(isFlipped: $guess.scoreFlipped[idx]) {
             ZStack {
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color.primary, lineWidth: 2)
+                RoundedRectangle(cornerRadius: Global.cornerRadius)
+                    .stroke(Color.primary, lineWidth: Global.lineWidth)
                     .frame(width: Global.scoreTileSize, height: Global.scoreTileSize)
-                RoundedRectangle(cornerRadius: cornerRadius)
+                RoundedRectangle(cornerRadius: Global.cornerRadius)
                     .fill(Color.systemBackground)
                     .frame(width: Global.scoreTileSize, height: Global.scoreTileSize)
             }
         } back: {
             ZStack {
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color.primary, lineWidth: 2)
+                RoundedRectangle(cornerRadius: Global.cornerRadius)
+                    .stroke(Color.primary, lineWidth: Global.lineWidth)
                     .frame(width: Global.scoreTileSize, height: Global.scoreTileSize)
-                RoundedRectangle(cornerRadius: cornerRadius)
+                RoundedRectangle(cornerRadius: Global.cornerRadius)
                     .fill(guess.scoreColor[idx])
                     .frame(width: Global.scoreTileSize, height: Global.scoreTileSize)
             }

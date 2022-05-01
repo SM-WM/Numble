@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		66744928281E302A001985D3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66744927281E302A001985D3 /* HelpView.swift */; };
 		66A8ACB0281B2F930032281A /* FlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A8ACAF281B2F930032281A /* FlipView.swift */; };
+		66B4C90A281E610200D63C20 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B4C909281E610200D63C20 /* SettingsView.swift */; };
+		66B4C90E281E675700D63C20 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B4C90D281E675700D63C20 /* StatisticsView.swift */; };
 		66D600E72814DFE30051332B /* NumbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E62814DFE30051332B /* NumbleApp.swift */; };
 		66D600E92814DFE30051332B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E82814DFE30051332B /* GameView.swift */; };
 		66D600EB2814DFE60051332B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D600EA2814DFE60051332B /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 		66744927281E302A001985D3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		669B037F281538DC0022DC0B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		66A8ACAF281B2F930032281A /* FlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipView.swift; sourceTree = "<group>"; };
+		66B4C909281E610200D63C20 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		66B4C90D281E675700D63C20 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		66D600E32814DFE30051332B /* Numble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D600E62814DFE30051332B /* NumbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbleApp.swift; sourceTree = "<group>"; };
 		66D600E82814DFE30051332B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 				66DF86D728164D0000D4B997 /* keyboardView.swift */,
 				66744927281E302A001985D3 /* HelpView.swift */,
 				7DD2F48D281DE30900910D58 /* ToastView.swift */,
+				66B4C909281E610200D63C20 /* SettingsView.swift */,
+				66B4C90D281E675700D63C20 /* StatisticsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D60117281513C60051332B /* GuessView.swift in Sources */,
+				66B4C90E281E675700D63C20 /* StatisticsView.swift in Sources */,
 				66A8ACB0281B2F930032281A /* FlipView.swift in Sources */,
 				66DF86D828164D0000D4B997 /* keyboardView.swift in Sources */,
 				66744928281E302A001985D3 /* HelpView.swift in Sources */,
@@ -337,6 +344,7 @@
 				66D6011A2815174D0051332B /* Guess.swift in Sources */,
 				66D6011C281521A00051332B /* NumbleDm.swift in Sources */,
 				66DF86D62816490700D4B997 /* keyButtonView.swift in Sources */,
+				66B4C90A281E610200D63C20 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

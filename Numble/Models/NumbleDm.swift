@@ -8,18 +8,19 @@ import SwiftUI
 
 class NumbleDm: ObservableObject {
     @Published var guesses: [Guess] = []
-    @Published var toastText: String?
     
-    var digits: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var selectedNum: String = ""
     var currentNum: String = ""
     var tryIdx = 0
-    var inPlay = false
+    var level = Double(Global.level)
     
-    var disableKeyboard: Bool { !inPlay || currentNum.count == 4 }
+//  Control booleans
+    var inPlay = false
+    var disableKeyboard: Bool { !inPlay || currentNum.count == Global.level }
     
     init() {
         newGame()
+//        UIScrollView.appearance().bounces = false
     }
     
 // MARK: - Setup
@@ -35,7 +36,7 @@ class NumbleDm: ObservableObject {
    func selectRandomNumber() {
        var digits: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
        digits.shuffle()
-       selectedNum = Array(digits[0...3]).joined(separator: "")
+       selectedNum = Array(digits[0..<Global.level]).joined(separator: "")
    }
    
    func resetDefaults() {
@@ -63,10 +64,10 @@ class NumbleDm: ObservableObject {
             revealScores(for: tryIdx)
             print("You Win")
             print ("It took you \(tryIdx + 1) tries and time: \(timeString)")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6.0 * 0.25) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
                 self.timer.invalidate()
+                if(self.tryIdx<10){self.showToast(with: self.toastWords[self.tryIdx])}
             }
-            if(tryIdx<8){showToast(with: toastWords[tryIdx])}
             currentNum = ""
             inPlay = false
         } else {
@@ -77,21 +78,15 @@ class NumbleDm: ObservableObject {
             revealScores(for: tryIdx)
             currentNum = ""
             tryIdx += 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6.0 * 0.25) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
                 self.guesses.append(Guess(index: self.tryIdx))
                 self.guesses[self.tryIdx - 1].bg = Color.wrong
             }
         }
-        
-        print(guesses.count)
-        print(guesses)
-        
-        
-        
     }
     
     func updateRow() {
-        guesses[tryIdx].num = currentNum.padding(toLength: 4, withPad: " ", startingAt: 0)
+        guesses[tryIdx].num = currentNum.padding(toLength: Global.level, withPad: " ", startingAt: 0)
     }
     
     func setScoreColors() {
@@ -101,7 +96,7 @@ class NumbleDm: ObservableObject {
         guesses[tryIdx].scoreColor = []
         
         // add greens and count yellows and greys
-        for idx in 0...3 {
+        for idx in 0..<Global.level {
             if (Array(currentNum)[idx] == Array(selectedNum)[idx]){
                 guesses[tryIdx].scoreColor.append(Color.correct)
             }
@@ -129,8 +124,8 @@ class NumbleDm: ObservableObject {
     }
     
     func revealScores (for row: Int) {
-        for scoreIdx in 0...3 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(scoreIdx) * 0.25) {
+        for scoreIdx in 0..<Global.level {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(scoreIdx) * 0.2) {
                 self.guesses[row].scoreFlipped[scoreIdx].toggle()
             }
         }
@@ -140,16 +135,16 @@ class NumbleDm: ObservableObject {
     
    var timer = Timer()
    
-   @Published var timeElapsed = 0.01
+   @Published var timeElapsed = 0.1
    
    func startTimer() {
-       timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+       timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
            self.timeElapsed += 1
        }
    }
    
    func timeConverter(_ msecs: Int) -> (Int, Int, Int, Int) {
-       return (msecs / 360000, (msecs % 360000) / 6000, ((msecs % 360000) % 6000) / 100, ((msecs % 360000) % 6000) % 100)
+       return (msecs / 36000, (msecs % 36000) / 600, ((msecs % 36000) % 600) / 10, ((msecs % 36000) % 600) % 10)
    }
    
    var timeString: String {
@@ -159,7 +154,10 @@ class NumbleDm: ObservableObject {
     
     // MARK: Toast
     
-    var toastWords = ["Genius", "Genius", "Magnificent", "Magnificent", "Impressive", "Splendid", "Splendid", "Great"]
+    @Published var toastText: String?
+    
+    var toastWords = ["Pure Luck!", "Genius", "Genius", "Magnificent", "Magnificent", "Impressive", "Splendid", "Splendid", "Great", "Phew!"]
+    
     func showToast(with text: String?){
         withAnimation {
             toastText = text
