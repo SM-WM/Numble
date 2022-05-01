@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct keyboardView: View {
-    @EnvironmentObject var dm: NumbleDataModel
+    @EnvironmentObject var dm: NumbleDm
     var body: some View {
         
         let keyboardFirstRow = "0123456".map{ String($0) }
@@ -80,6 +80,6 @@ struct keyboardView: View {
 struct keyboardView_Previews: PreviewProvider {
     static var previews: some View {
         keyboardView()
-            .environmentObject(NumbleDataModel())
+            .environmentObject(NumbleDm())
     }
 }

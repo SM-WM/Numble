@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct NumbleApp: App {
-    @StateObject var dm = NumbleDataModel()
+    @StateObject var dm = NumbleDm()
     var body: some Scene {
         WindowGroup {
             GameView()

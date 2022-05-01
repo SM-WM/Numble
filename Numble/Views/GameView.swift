@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameView: View {
-    @EnvironmentObject var dm: NumbleDataModel
+    @EnvironmentObject var dm: NumbleDm
     
     @State private var showHelp = false
     var body: some View {
@@ -106,6 +106,6 @@ struct GameView_Previews: PreviewProvider {
         GameView()
             .previewDevice("iPhone 13 Pro")
             .previewInterfaceOrientation(.portrait)
-            .environmentObject(NumbleDataModel())
+            .environmentObject(NumbleDm())
     }
 }
