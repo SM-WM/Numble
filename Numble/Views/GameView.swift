@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     @EnvironmentObject var dm: NumbleDm
+    
     var body: some View {
 
         NavigationView {
@@ -57,6 +58,7 @@ struct GameView: View {
                 keyboardView()
                     .padding(.top)
             }
+
             
             .navigationViewStyle(.stack)
                 .navigationBarTitleDisplayMode(.inline)
@@ -83,13 +85,29 @@ struct GameView: View {
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "chart.bar")
+                        HStack{
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "chart.bar")
+                            }
+                            if !dm.inPlay{
+                                Button {
+                                    dm.newGame()
+                                } label: {
+                                    Text("New")
+                                        .foregroundColor(.primary)
+                                }
+                            }
                         }
                     }
                 }
+                        .overlay(alignment: .top){
+                            if let toastText = dm.toastText{
+                                ToastView(toastText: toastText)
+                                    .offset(y: 20)
+                            }
+                        }
         }
     }
 }

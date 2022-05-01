@@ -9,12 +9,14 @@ import SwiftUI
 
 class NumbleDm: ObservableObject {
     @Published var guesses: [Guess] = []
+    @Published var toastText: String?
     
     var digits: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var selectedNum: String = ""
     var currentNum: String = ""
     var tryIdx = 0
     var inPlay = false
+    var toastWords = ["Genius", "Genius", "Magnificent", "Magnificent", "Impressive", "Splendid", "Splendid", "Great"]
     
     @Published var timeElapsed = 0.0
     var timeString: String {
@@ -50,6 +52,7 @@ class NumbleDm: ObservableObject {
             self.timeElapsed += 1
         }
         print("selected number is \(selectedNum)")
+        print(guesses)
     }
     
     func defaults() {
@@ -79,6 +82,7 @@ class NumbleDm: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + 6.0 * 0.25) {
                 self.timer.invalidate()
             }
+            if(tryIdx<8){showToast(with: toastWords[tryIdx])}
             currentNum = ""
             inPlay = false
         } else {
@@ -93,6 +97,8 @@ class NumbleDm: ObservableObject {
         }
         
         print(guesses.count)
+        print(guesses)
+        
         
         
     }
@@ -104,6 +110,8 @@ class NumbleDm: ObservableObject {
     func setScoreColors() {
         var misplaced: Int = 0
         var wrong: Int = 0
+        
+        guesses[tryIdx].scoreColor = []
         
         // add greens and count yellows and greys
         for idx in 0...3 {
@@ -139,6 +147,16 @@ class NumbleDm: ObservableObject {
                 self.guesses[row].scoreFlipped[scoreIdx].toggle()
             }
         }
+    }
+    
+    func showToast(with text: String?){
+        withAnimation {
+            toastText = text
+        }
+        withAnimation(Animation.linear(duration: 0.2).delay(3)){
+            toastText = nil
+        }
+
     }
     
     
