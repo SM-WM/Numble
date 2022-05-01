@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class NumbleDataModel: ObservableObject {
+class NumbleDm: ObservableObject {
     
     @Published var guesses: [Guess] = []
     
