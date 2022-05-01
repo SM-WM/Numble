@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66744928281E302A001985D3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66744927281E302A001985D3 /* HelpView.swift */; };
 		66A8ACB0281B2F930032281A /* FlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A8ACAF281B2F930032281A /* FlipView.swift */; };
 		66D600E72814DFE30051332B /* NumbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E62814DFE30051332B /* NumbleApp.swift */; };
 		66D600E92814DFE30051332B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D600E82814DFE30051332B /* GameView.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66744927281E302A001985D3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		669B037F281538DC0022DC0B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		66A8ACAF281B2F930032281A /* FlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipView.swift; sourceTree = "<group>"; };
 		66D600E32814DFE30051332B /* Numble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numble.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +178,7 @@
 				66D60116281513C60051332B /* GuessView.swift */,
 				66DF86D52816490700D4B997 /* keyButtonView.swift */,
 				66DF86D728164D0000D4B997 /* keyboardView.swift */,
+				66744927281E302A001985D3 /* HelpView.swift */,
 				7DD2F48D281DE30900910D58 /* ToastView.swift */,
 			);
 			path = Views;
@@ -325,6 +328,7 @@
 				66D60117281513C60051332B /* GuessView.swift in Sources */,
 				66A8ACB0281B2F930032281A /* FlipView.swift in Sources */,
 				66DF86D828164D0000D4B997 /* keyboardView.swift in Sources */,
+				66744928281E302A001985D3 /* HelpView.swift in Sources */,
 				66D600E92814DFE30051332B /* GameView.swift in Sources */,
 				7DD2F48E281DE30900910D58 /* ToastView.swift in Sources */,
 				66D601142815112B0051332B /* Color+Extension.swift in Sources */,
