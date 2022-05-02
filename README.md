@@ -98,9 +98,9 @@ Numble is a number game where the player needs to guess a 4 digit number in mult
    | wrong         | Number   | number of wrong values in this trial|
    
    
-   ###Sprint 1 - Unit 10 Progress GIF
+   ### Sprint 1 - Unit 10 Progress GIF
    
-   **Design keyboard and Game board
+   ** Design keyboard and Game board
    
    <img src="https://media.giphy.com/media/KlG14bi9kPzbGBn2jd/giphy.gif" width=300 ><br>
    
