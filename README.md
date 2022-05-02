@@ -105,5 +105,10 @@ Numble is a number game where the player needs to guess a 4 digit number in mult
    
    ** Design keyboard and Game board
    
-   <img src="https://media.giphy.com/media/KlG14bi9kPzbGBn2jd/giphy.gif" width=300 ><br>
+   <img src="https://media.giphy.com/media/KlG14bi9kPzbGBn2jd/giphy.gif" width=250 ><br>
+   
+   ### Sprint 2 - Unit 11 Progress GIF
+   
+   
+   <img src="https://media.tenor.com/images/139f74fdc2ed59214205df2d60147831/tenor.gif" width=250 ><br>
    
