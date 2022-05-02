@@ -25,9 +25,9 @@ Numble is a number game where the player needs to guess a 4 digit number in mult
 
 **Required Must-have Stories**
 
-[x] User sees the instruction page on the first launch of app
-[x] A new challenge is presented after every game
-[x] A timer counts the time taken between the first guess and the correct guess
+[X] User sees the instruction page on the first launch of app
+[X] A new challenge is presented after every game
+[X] A timer counts the time taken between the first guess and the correct guess
 * User is given a performance score based on number of tries and time taken
 * progress is saved across sessions including time countdowns
 
