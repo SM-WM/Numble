@@ -7,74 +7,72 @@
 
 import SwiftUI
 
+
 struct GuessView: View {
     @Binding var guess: Guess
     var body: some View {
-        VStack {
-            HStack(spacing: 8) {
+
+        HStack (spacing: Global.colSpacing*4) {
+            HStack(spacing: Global.colSpacing) {
                 ForEach(0...3, id: \.self) { index in
                     Text(guess.numArr[index])
+                        .font(.title)
+                        .fontWeight(.regular)
                         .foregroundColor(.primary)
-                        .frame(width: 60, height: 60, alignment: .center)
-                        .background(Color.systemBackground)
-                        .font(.system(size: 35, weight: .heavy))
+                        .frame(width: Global.tileSize, height: Global.tileSize, alignment: .center)
+                        .background(guess.bg)
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.primary, lineWidth: 2)
                                 )
                 }
                 
-                Spacer()
-                    .frame(width: 6)
+            }
                 
-                VStack (spacing: 6) {
-                    HStack (spacing: 6) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.primary, lineWidth: 2)
-                                .frame(width: 28, height: 28)
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.correct)
-                            .frame(width: 28, height: 28)
-                        }
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.primary, lineWidth: 2)
-                                .frame(width: 28, height: 28)
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.misplaced)
-                            .frame(width: 28, height: 28)
-                        }
-                    }
-                    
-                    HStack (spacing: 6) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.primary, lineWidth: 2)
-                                .frame(width: 28, height: 28)
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.misplaced)
-                            .frame(width: 28, height: 28)
-                        }
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.primary, lineWidth: 2)
-                                .frame(width: 28, height: 28)
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.wrong)
-                            .frame(width: 28, height: 28)
-                        }
-                        
-                    }
+            VStack (spacing: Global.tinySpacing) {
+                
+                HStack (spacing: Global.tinySpacing) {
+                    scoreTile(guess: $guess, idx: 0)
+                    scoreTile(guess: $guess, idx: 1)
                 }
                 
+                HStack (spacing: Global.tinySpacing) {
+                    scoreTile(guess: $guess, idx: 2)
+                    scoreTile(guess: $guess, idx: 3)
+                }
             }
-//            Divider().frame(width: 355,height: 0.5).background(Color.primary)
         }
     }
 }
+
+struct scoreTile: View {
+    
+    @Binding var guess: Guess
+    
+    let idx: Int
+    
+    var body: some View {
+        FlipView(isFlipped: $guess.scoreFlipped[idx]) {
+            ZStack {
+                RoundedRectangle(cornerRadius: Global.cornerRadius)
+                    .stroke(Color.primary, lineWidth: Global.lineWidth)
+                    .frame(width: Global.scoreTileSize, height: Global.scoreTileSize)
+                RoundedRectangle(cornerRadius: Global.cornerRadius)
+                    .fill(Color.systemBackground)
+                    .frame(width: Global.scoreTileSize, height: Global.scoreTileSize)
+            }
+        } back: {
+            ZStack {
+                RoundedRectangle(cornerRadius: Global.cornerRadius)
+                    .stroke(Color.primary, lineWidth: Global.lineWidth)
+                    .frame(width: Global.scoreTileSize, height: Global.scoreTileSize)
+                RoundedRectangle(cornerRadius: Global.cornerRadius)
+                    .fill(guess.scoreColor[idx])
+                    .frame(width: Global.scoreTileSize, height: Global.scoreTileSize)
+            }
+        }
+    }
+}  
 
 struct GuessView_Previews: PreviewProvider {
     static var previews: some View {

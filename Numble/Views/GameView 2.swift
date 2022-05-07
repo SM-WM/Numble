@@ -4,53 +4,55 @@
 //
 //  Created by Walter Mwaniki on 4/23/22.
 //
+
 import SwiftUI
 
 struct GameView: View {
     @EnvironmentObject var dm: NumbleDm
-    @State private var showHelp = false
-    @State private var showSettings = false
     
     var body: some View {
 
         NavigationView {
-            
-            VStack(alignment: .center) {
+            VStack {
                 
                 Spacer()
                     .frame(height: 10)
                 
-                HStack (spacing: Global.colSpacing*4) {
+                HStack (spacing: 8) {
                     
                     Text("\(dm.timeString)")
                             .font(.title.monospaced())
                             .fontWeight(.light)
                             .foregroundColor(Color.red)
-                            .frame(width: (Global.tileSize*4) + (Global.colSpacing*3), height: Global.rowSpacing*3.5, alignment: .center)
-                            .font(.system(size: 22, weight: .regular))
+                            .frame(width: 262, height: 40, alignment: .center)
+                            .font(.system(size: 28, weight: .regular))
                             .overlay(
-                                RoundedRectangle(cornerRadius: Global.cornerRadius)
-                                        .stroke(Color.primary, lineWidth: Global.lineWidth)
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.primary, lineWidth: 2)
                                     )
+                    
+                    Spacer()
+                        .frame(width: 6)
                     
                     Text("score")
                         .fontWeight(.light)
-                        .frame(width: Global.tileSize, height: Global.rowSpacing*3.5, alignment: .center)
-                        .font(.system(size: 16, weight: .regular))
+                        .frame(width: 62, height: 40, alignment: .center)
+                        .font(.system(size: 20, weight: .regular))
                         .overlay(
-                                RoundedRectangle(cornerRadius: Global.cornerRadius)
-                                    .stroke(Color.primary, lineWidth: Global.lineWidth)
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.primary, lineWidth: 2)
                                 )
                 }
                 
                 
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: Global.rowSpacing) {
+                ScrollView(showsIndicators: true) {
+                    LazyVStack(spacing: 10) {
+                        Spacer()
+                            .frame(height: 0)
                         ForEach(0...$dm.guesses.count - 1, id: \.self) { index in
                             GuessView(guess: $dm.guesses[index])
                         }
                     }
-                    .padding()
                 }
                 
                 keyboardView()
@@ -64,32 +66,31 @@ struct GameView: View {
                     ToolbarItem(placement: .navigationBarLeading) {
                         HStack {
                             Button {
-                                showSettings.toggle()
+                                
                             } label: {
-                                Label("Settings", systemImage: "gearshape.fill")
+                                Image(systemName: "gearshape.fill")
                             }
-                            .padding(.leading)
-                            
                             Button {
-                                showHelp.toggle()
+                                
                             } label: {
-                                Label("Help", systemImage: "questionmark.circle")
+                                Image(systemName: "questionmark.circle")
                             }
                         }
                     }
                     ToolbarItem(placement: .principal) {
                         Text("Numble")
-                            .font(.system(size: 32.0, weight: .thin, design: .monospaced))
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
                             .foregroundColor(.primary)
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack{
-                            NavigationLink(destination: StatisticsView()) {
-                                Label("Statistics", systemImage: "chart.bar")
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "chart.bar")
                             }
-                            .padding()
-                            
                             if !dm.inPlay{
                                 Button {
                                     dm.newGame()
@@ -101,18 +102,12 @@ struct GameView: View {
                         }
                     }
                 }
-                .sheet(isPresented: $showHelp) {
-                    HelpView()
-                }
-                .sheet(isPresented: $showSettings) {
-                    SettingsView()
-                }
-                .overlay(alignment: .top){
-                    if let toastText = dm.toastText{
-                        ToastView(toastText: toastText)
-                            .offset(y: 20)
-                    }
-                }
+                        .overlay(alignment: .top){
+                            if let toastText = dm.toastText{
+                                ToastView(toastText: toastText)
+                                    .offset(y: 20)
+                            }
+                        }
         }
     }
 }
@@ -121,6 +116,7 @@ struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         GameView()
             .previewDevice("iPhone 13 Pro")
+            .previewInterfaceOrientation(.portrait)
             .environmentObject(NumbleDm())
     }
 }

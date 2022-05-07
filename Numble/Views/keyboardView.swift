@@ -10,6 +10,7 @@ import SwiftUI
 struct keyboardView: View {
     @EnvironmentObject var dm: NumbleDm
     var body: some View {
+        
         let keyboardFirstRow = "0123456".map{ String($0) }
         let keyboardSecondRow = "789".map{ String($0) }
         
@@ -19,11 +20,15 @@ struct keyboardView: View {
                 ForEach(keyboardFirstRow, id: \.self) { num in
                     keyButtonView(num: num)
                 }
+                .disabled(dm.disableKeyboard)
+                .opacity(dm.disableKeyboard ? 0.6 : 1)
             }
             
             HStack (spacing: 8) {
+                
+                // delete button
                 Button {
-                    dm.enterNumber()
+                    dm.deleteChar()
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
@@ -38,11 +43,19 @@ struct keyboardView: View {
                             .foregroundColor(Color.primary)
                     }
                 }
+                .disabled(dm.currentNum.count == 0)
+                .opacity(dm.currentNum.count == 0 ? 0.6 : 1)
+                
+                // 7,8,9 buttons
                 ForEach(keyboardSecondRow, id: \.self) { num in
                     keyButtonView(num: num)
                 }
+                .disabled(dm.disableKeyboard)
+                .opacity(dm.disableKeyboard ? 0.6 : 1)
+                
+                // Enter button
                 Button {
-                    dm.deleteChar()
+                    dm.enterNumber()
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
@@ -57,6 +70,8 @@ struct keyboardView: View {
                             .foregroundColor(Color.primary)
                     }
                 }
+                .disabled(dm.currentNum.count < 4 || !dm.inPlay)
+                .opacity(dm.currentNum.count < 4 || !dm.inPlay ? 0.6 : 1)
             }
         }
     }
@@ -65,5 +80,6 @@ struct keyboardView: View {
 struct keyboardView_Previews: PreviewProvider {
     static var previews: some View {
         keyboardView()
+            .environmentObject(NumbleDm())
     }
 }

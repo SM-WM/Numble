@@ -25,9 +25,12 @@ Numble is a number game where the player needs to guess a 4 digit number in mult
 
 **Required Must-have Stories**
 
-* User sees the instruction page on the first launch of app
-* A new challenge is presented everyday
-* A timer counts the time taken between the first guess and the correct guess
+- [x] User can view gameboard 
+- [x] Scoretiles flip after each try to show the number of correct, misplaced and wrong digits
+- [x] User can view the instruction page
+- [x] A congratulatory message is displayed as a toast view after the user guesses the word 
+- [x] A new challenge is presented after every game
+- [x] A timer counts the time taken between the first guess and the correct guess
 * User is given a performance score based on number of tries and time taken
 * progress is saved across sessions including time countdowns
 
@@ -94,10 +97,37 @@ Numble is a number game where the player needs to guess a 4 digit number in mult
    | correct       | Number   | number of correct values in this trial|
    | misplaced     | Number   | number of misplaced values in this trial|
    | wrong         | Number   | number of wrong values in this trial|
-   
+
 ### Models
-[Add table of models]
-### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+
+#### Game
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | gameId        | String   | unique id for the game (default field) |
+   | player        | Pointer to User| current player |
+   | time          | Number   | time elapsed since game started|
+   | tries         | Array    | an array of guesses|
+   
+#### Guess
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | index         | Number   | trial number |
+   | guessNumber   | String   | 4 chars string |
+   | correct       | Number   | number of correct values in this trial|
+   | misplaced     | Number   | number of misplaced values in this trial|
+   | wrong         | Number   | number of wrong values in this trial|
+   
+   
+   ### Sprint 1 - Unit 10 Progress GIF
+   
+   ** Design keyboard and Game board
+   
+   <img src="https://media.giphy.com/media/KlG14bi9kPzbGBn2jd/giphy.gif" width=250 ><br>
+   
+   ### Sprint 2 - Unit 11 Progress GIF
+   
+   
+   <img src="https://media.tenor.com/images/139f74fdc2ed59214205df2d60147831/tenor.gif" width=250 ><br>
+   
