@@ -12,8 +12,8 @@ struct GameView: View {
     @State private var showSettings = false
     
     var body: some View {
-
-        NavigationView {
+        ZStack{
+            NavigationView {
             
             VStack(alignment: .center) {
                 
@@ -46,8 +46,10 @@ struct GameView: View {
                 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: Global.rowSpacing) {
-                        ForEach(0...$dm.guesses.count - 1, id: \.self) { index in
-                            GuessView(guess: $dm.guesses[index])
+                        //$dm.guesses.count - 1
+                        ForEach(0...9, id: \.self) { index in
+                                GuessView(guess: $dm.guesses[index])
+                            
                         }
                     }
                     .padding()
@@ -85,10 +87,15 @@ struct GameView: View {
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack{
-                            NavigationLink(destination: StatisticsView()) {
-                                Label("Statistics", systemImage: "chart.bar")
+//                            NavigationLink(destination: StatisticsView()) {
+//                                Label("Statistics", systemImage: "chart.bar")
+//                            }
+//                            .padding()
+                            Button{
+                                withAnimation{dm.showStats.toggle()}
+                            } label: {
+                                Image(systemName: "chart.bar")
                             }
-                            .padding()
                             
                             if !dm.inPlay{
                                 Button {
@@ -114,7 +121,15 @@ struct GameView: View {
                     }
                 }
         }
+            
+            if dm.showStats{
+            StatisticsView()
     }
+       
+        }
+
+    }
+
 }
 
 struct GameView_Previews: PreviewProvider {
