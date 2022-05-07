@@ -8,17 +8,21 @@ import SwiftUI
 
 class NumbleDm: ObservableObject {
     @Published var guesses: [Guess] = []
+    @Published var showStats = false
     
     var selectedNum: String = ""
     var currentNum: String = ""
     var tryIdx = 0
     var level = Double(Global.level)
+    var gameOver = false
+    var currentStats: Statistic
     
 //  Control booleans
     var inPlay = false
     var disableKeyboard: Bool { !inPlay || currentNum.count == Global.level }
     
     init() {
+        currentStats = Statistic.loadStat()
         newGame()
 //        UIScrollView.appearance().bounces = false
     }
@@ -44,7 +48,9 @@ class NumbleDm: ObservableObject {
        tryIdx = 0
        timeElapsed = 0
        currentNum = ""
-       guesses.append(Guess(index: tryIdx))
+       for index in 0...9 {
+       guesses.append(Guess(index: index))
+       }
    }
     
     func addChar(digit: String) {
@@ -60,6 +66,7 @@ class NumbleDm: ObservableObject {
     func enterNumber() {
         print("you guessed \(currentNum)")
         if currentNum == selectedNum {
+            gameOver = true
             setScoreColors()
             revealScores(for: tryIdx)
             print("You Win")
@@ -68,11 +75,22 @@ class NumbleDm: ObservableObject {
                 self.timer.invalidate()
                 if(self.tryIdx<10){self.showToast(with: self.toastWords[self.tryIdx])}
             }
+            currentStats.update(win: true, index: tryIdx)
             currentNum = ""
             inPlay = false
         } else {
             if tryIdx == 0 {
                 startTimer()
+            }
+            if tryIdx == 9 {
+                gameOver = true
+                inPlay = false
+                print("You lose")
+                DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
+                    self.timer.invalidate()
+                }
+                currentStats.update(win: false)
+                showToast(with: selectedNum)
             }
             setScoreColors()
             revealScores(for: tryIdx)
@@ -164,6 +182,11 @@ class NumbleDm: ObservableObject {
         }
         withAnimation(Animation.linear(duration: 0.2).delay(3)){
             toastText = nil
+            if gameOver{
+                withAnimation(Animation.linear(duration: 0.2).delay(3)){
+                    showStats.toggle()
+                }
+            }
         }
 
     }
