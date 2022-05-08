@@ -63,15 +63,14 @@ struct keyboardView: View {
                                 .fill(Color.systemBackground)
                                 .frame(width: 76, height: 60)
                             RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.primary, lineWidth: 2)
+                                .stroke(Color.burgundy, lineWidth: 2)
                                 .frame(width: 76, height: 60)
                             Text("New")
-                                .font(.system(size: 24, weight: .semibold))
+                                .font(.system(size: 20, weight: .semibold))
                                 .frame(width: 76, height: 60)
                                 .foregroundColor(Color.correct)
                         }
                     }
-                    .padding(.trailing)
                 } else {
                     // Enter button
                     Button {

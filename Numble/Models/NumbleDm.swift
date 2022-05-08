@@ -23,7 +23,7 @@ class NumbleDm: ObservableObject {
     
     init() {
         currentStats = Statistic.loadStat()
-        newGame()
+        gameOver = true
     }
     
 // MARK: - Setup
@@ -32,6 +32,7 @@ class NumbleDm: ObservableObject {
        gameOver = false
        resetDefaults()
        selectRandomNumber()
+       startTimer()
        print("selected number is \(selectedNum)")
    }
    
@@ -48,9 +49,7 @@ class NumbleDm: ObservableObject {
        tryIdx = 0
        timeElapsed = 1
        currentNum = ""
-//       for index in 0...9 {
        guesses.append(Guess(index: tryIdx))
-//       }
    }
     
     func addChar(digit: String) {
@@ -72,7 +71,7 @@ class NumbleDm: ObservableObject {
             print ("It took you \(tryIdx + 1) tries and time: \(timeString)")
             DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
                 self.timer.invalidate()
-                if(self.tryIdx<10){self.showToast(with: self.toastWords[self.tryIdx])}
+                if(self.tryIdx<Global.allowedTries){self.showToast(with: self.toastWords[self.tryIdx])}
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.3) {
                 self.showStats.toggle()
@@ -80,12 +79,8 @@ class NumbleDm: ObservableObject {
             }
             currentStats.update(didWin: true, winIdx: tryIdx, winTime: Int(timeElapsed))
             currentNum = ""
-//            inPlay = false
         } else {
-            if tryIdx == 0 {
-                startTimer()
-            }
-            if tryIdx < 9 {
+            if tryIdx < Global.allowedTries - 1 {
                 setScoreColors()
                 revealScores(for: tryIdx)
                 currentNum = ""
@@ -99,7 +94,6 @@ class NumbleDm: ObservableObject {
                 setScoreColors()
                 revealScores(for: tryIdx)
                 gameOver = true
-//                inPlay = false
                 print("You lose")
                 DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
                     self.guesses[self.tryIdx - 1].bg = Color.wrong
@@ -194,14 +188,6 @@ class NumbleDm: ObservableObject {
         }
         withAnimation(Animation.linear(duration: 0.2).delay(3)){
             toastText = nil
-//            if gameOver{
-//                withAnimation(Animation.linear(duration: 0.2).delay(3.5)){
-//                showStats.toggle()
-//                }
-//            }
         }
-
     }
-    
-    
 }

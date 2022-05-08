@@ -8,7 +8,7 @@
 import Foundation
 
 struct Statistic: Codable {
-    var frequencies = [Int](repeating: 0, count: 11)
+    var frequencies = [Int](repeating: 0, count: Global.allowedTries + 1)
     var gamesArray: [Game] = []
     var streak = 0
     var maxStreak = 0
@@ -24,15 +24,12 @@ struct Statistic: Codable {
     mutating func update(didWin: Bool, winIdx: Int? = nil, winTime: Int) {
         let newGame = Game(index: games, win: didWin, time: winTime, tries: winIdx! + 1)
         gamesArray.append(newGame)
-        print(newGame.tries)
-        print(newGame.time)
-        print(newGame.performance)
         streak = didWin ? streak + 1 : 0
         if didWin {
             frequencies[winIdx!] += 1
             maxStreak = max(maxStreak, streak)
         } else {
-            frequencies[10] += 1
+            frequencies[Global.allowedTries] += 1
         }
         saveStat()
     }
@@ -64,5 +61,6 @@ struct Game: Codable {
     var win: Bool
     var time: Int
     var tries: Int
-    var performance: Int { return (triesWeight/tries)+(timeWeight/time)}
+    var performance: Int {
+        return (win ? (triesWeight/tries)+(timeWeight/time) : (triesWeight/tries)+(timeWeight/time) * 0.25}
 }

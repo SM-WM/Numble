@@ -95,15 +95,7 @@ struct GameView: View {
                             NavigationLink(destination: StatisticsView(), isActive: $dm.showStats) {
                                 Label("Statistics", systemImage: "chart.bar")
                             }
-//                            if !dm.inPlay && dm.gameOver{
-//                                Button {
-//                                    dm.newGame()
-//                                } label: {
-//                                    Text("New")
-//                                        .foregroundColor(.primary)
-//                                }
-//                                .padding(.trailing)
-//                            }
+                            .padding()
                         }
                     }
                 }

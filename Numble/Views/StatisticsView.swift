@@ -34,7 +34,6 @@ struct StatisticsView: View {
                         }
                         SingleStat(value: dm.currentStats.streak,
                                    text: "Current Streak")
-//                                .fixedSize(horizontal: false, vertical: true)
                         .frame(width: Global.tileSize)
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
@@ -42,7 +41,6 @@ struct StatisticsView: View {
                                 )
                         SingleStat(value: dm.currentStats.maxStreak,
                                    text: "MAX Streak")
-//                                .fixedSize(horizontal: false, vertical: true)
                             .frame(width: Global.tileSize)
                             .overlay(
                                     RoundedRectangle(cornerRadius: 5)
