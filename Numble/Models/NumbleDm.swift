@@ -24,7 +24,6 @@ class NumbleDm: ObservableObject {
     init() {
         currentStats = Statistic.loadStat()
         newGame()
-//        UIScrollView.appearance().bounces = false
     }
     
 // MARK: - Setup
@@ -48,9 +47,9 @@ class NumbleDm: ObservableObject {
        tryIdx = 0
        timeElapsed = 0
        currentNum = ""
-       for index in 0...9 {
-       guesses.append(Guess(index: index))
-       }
+//       for index in 0...9 {
+       guesses.append(Guess(index: tryIdx))
+//       }
    }
     
     func addChar(digit: String) {
@@ -64,7 +63,6 @@ class NumbleDm: ObservableObject {
     }
     
     func enterNumber() {
-        print("you guessed \(currentNum)")
         if currentNum == selectedNum {
             gameOver = true
             setScoreColors()
@@ -75,6 +73,9 @@ class NumbleDm: ObservableObject {
                 self.timer.invalidate()
                 if(self.tryIdx<10){self.showToast(with: self.toastWords[self.tryIdx])}
             }
+            DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.3) {
+                self.showStats.toggle()
+            }
             currentStats.update(win: true, index: tryIdx)
             currentNum = ""
             inPlay = false
@@ -82,23 +83,30 @@ class NumbleDm: ObservableObject {
             if tryIdx == 0 {
                 startTimer()
             }
-            if tryIdx == 9 {
+            if tryIdx < 9 {
+                setScoreColors()
+                revealScores(for: tryIdx)
+                currentNum = ""
+                tryIdx += 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
+                    self.guesses.append(Guess(index: self.tryIdx))
+                    self.guesses[self.tryIdx - 1].bg = Color.wrong
+                }
+            } else if tryIdx == 9 {
+                setScoreColors()
+                revealScores(for: tryIdx)
                 gameOver = true
                 inPlay = false
                 print("You lose")
                 DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
+                    self.guesses[self.tryIdx - 1].bg = Color.wrong
                     self.timer.invalidate()
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.3) {
+                    self.showStats.toggle()
                 }
                 currentStats.update(win: false)
                 showToast(with: selectedNum)
-            }
-            setScoreColors()
-            revealScores(for: tryIdx)
-            currentNum = ""
-            tryIdx += 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
-                self.guesses.append(Guess(index: self.tryIdx))
-                self.guesses[self.tryIdx - 1].bg = Color.wrong
             }
         }
     }
@@ -110,7 +118,7 @@ class NumbleDm: ObservableObject {
     func setScoreColors() {
         var misplaced: Int = 0
         var wrong: Int = 0
-        
+        print(tryIdx)
         guesses[tryIdx].scoreColor = []
         
         // add greens and count yellows and greys
@@ -182,11 +190,11 @@ class NumbleDm: ObservableObject {
         }
         withAnimation(Animation.linear(duration: 0.2).delay(3)){
             toastText = nil
-            if gameOver{
-                withAnimation(Animation.linear(duration: 0.2).delay(3)){
-                    showStats.toggle()
-                }
-            }
+//            if gameOver{
+//                withAnimation(Animation.linear(duration: 0.2).delay(3.5)){
+//                showStats.toggle()
+//                }
+//            }
         }
 
     }

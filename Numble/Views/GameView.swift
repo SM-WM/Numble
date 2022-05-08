@@ -12,7 +12,7 @@ struct GameView: View {
     @State private var showSettings = false
     
     var body: some View {
-        ZStack{
+
             NavigationView {
             
             VStack(alignment: .center) {
@@ -20,23 +20,30 @@ struct GameView: View {
                 Spacer()
                     .frame(height: 10)
                 
-                HStack (spacing: Global.colSpacing*4) {
-                    
-                    Text("\(dm.timeString)")
-                            .font(.title.monospaced())
-                            .fontWeight(.light)
-                            .foregroundColor(Color.red)
-                            .frame(width: (Global.tileSize*4) + (Global.colSpacing*3), height: Global.rowSpacing*3.5, alignment: .center)
-                            .font(.system(size: 22, weight: .regular))
+                HStack (spacing: Global.colSpacing*3) {
+                    HStack (spacing: Global.colSpacing) {
+                        
+                        Text("\(dm.tryIdx)")
+                            .font(.system(size: 24, weight: .semibold, design: .monospaced))
+                            .foregroundColor(Color.correct)
+                            .frame(width: Global.tileSize, height: Global.rowSpacing*3.5, alignment: .center)
                             .overlay(
-                                RoundedRectangle(cornerRadius: Global.cornerRadius)
+                                    RoundedRectangle(cornerRadius: Global.cornerRadius)
                                         .stroke(Color.primary, lineWidth: Global.lineWidth)
                                     )
-                    
+                        
+                        Text("\(dm.timeString)")
+                                .foregroundColor(Color.red)
+                                .frame(width: (Global.tileSize*3) + (Global.colSpacing*2), height: Global.rowSpacing*3.5, alignment: .center)
+                                .font(.system(size: 24, weight: .regular, design: .monospaced))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: Global.cornerRadius)
+                                            .stroke(Color.primary, lineWidth: Global.lineWidth)
+                                        )
+                    }
                     Text("score")
-                        .fontWeight(.light)
                         .frame(width: Global.tileSize, height: Global.rowSpacing*3.5, alignment: .center)
-                        .font(.system(size: 16, weight: .regular))
+                        .font(.system(size: 16, weight: .light))
                         .overlay(
                                 RoundedRectangle(cornerRadius: Global.cornerRadius)
                                     .stroke(Color.primary, lineWidth: Global.lineWidth)
@@ -46,11 +53,12 @@ struct GameView: View {
                 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: Global.rowSpacing) {
-                        //$dm.guesses.count - 1
-                        ForEach(0...9, id: \.self) { index in
+                        ForEach(0..<$dm.guesses.count, id: \.self) { index in
+//                            if ($dm.guesses.count <= 10)  {
                                 GuessView(guess: $dm.guesses[index])
-                            
+//                            }
                         }
+                        
                     }
                     .padding()
                 }
@@ -87,7 +95,7 @@ struct GameView: View {
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack{
-                            NavigationLink(destination: StatisticsView()) {
+                            NavigationLink(destination: StatisticsView(), isActive: $dm.showStats) {
                                 Label("Statistics", systemImage: "chart.bar")
                             }
                             .padding()
@@ -122,11 +130,9 @@ struct GameView: View {
                 }
         }
             
-            if dm.showStats{
-            StatisticsView()
-    }
-       
-        }
+//            if dm.showStats{
+//                StatisticsView()
+//            }
 
     }
 

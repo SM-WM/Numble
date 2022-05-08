@@ -12,7 +12,7 @@ struct GuessView: View {
     @Binding var guess: Guess
     var body: some View {
 
-        HStack (spacing: Global.colSpacing*4) {
+        HStack (spacing: Global.colSpacing*3) {
             HStack(spacing: Global.colSpacing) {
                 ForEach(0...3, id: \.self) { index in
                     Text(guess.numArr[index])

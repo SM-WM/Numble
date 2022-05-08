@@ -52,7 +52,7 @@ struct StatisticsView: View {
                                                   ? Color.correct
                                                   : Color.wrong)
                                             .frame(width: CGFloat(dm.currentStats.frequencies[index])
-                                            / CGFloat(maxValue) * 200,
+                                                   / CGFloat(maxValue) * Global.tileSize * 5,
                                             height: 20)
                                             .overlay(
                                                 Text("\(dm.currentStats.frequencies[index])")
