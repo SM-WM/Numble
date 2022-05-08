@@ -8,13 +8,33 @@
 import Foundation
 
 struct Statistic: Codable {
-    var frequencies = [Int](repeating: 0, count: 10)
-    var games = 0
+    var frequencies = [Int](repeating: 0, count: 11)
+    var gamesArray: [Game] = []
     var streak = 0
     var maxStreak = 0
     
+    var games:Int {
+        gamesArray.count
+    }
+
     var wins: Int {
         frequencies.reduce(0, +)
+    }
+    
+    mutating func update(didWin: Bool, winIdx: Int? = nil, winTime: Int) {
+        let newGame = Game(index: games, win: didWin, time: winTime, tries: winIdx! + 1)
+        gamesArray.append(newGame)
+        print(newGame.tries)
+        print(newGame.time)
+        print(newGame.performance)
+        streak = didWin ? streak + 1 : 0
+        if didWin {
+            frequencies[winIdx!] += 1
+            maxStreak = max(maxStreak, streak)
+        } else {
+            frequencies[10] += 1
+        }
+        saveStat()
     }
     
     func saveStat() {
@@ -22,6 +42,7 @@ struct Statistic: Codable {
             UserDefaults.standard.set(encoded, forKey: "Stat")
         }
     }
+    
     static func loadStat() -> Statistic {
         if let savedStat = UserDefaults.standard.object(forKey: "Stat") as? Data {
             if let currentStat = try? JSONDecoder().decode(Statistic.self, from: savedStat) {
@@ -33,14 +54,15 @@ struct Statistic: Codable {
             return Statistic()
         }
     }
-    
-    mutating func update(win: Bool, index: Int? = nil) {
-        games += 1
-        streak = win ? streak + 1 : 0
-        if win {
-            frequencies[index!] += 1
-            maxStreak = max(maxStreak, streak)
-        }
-        saveStat()
-    }
+}
+
+let timeWeight = 36000
+let triesWeight = 10
+
+struct Game: Codable {
+    var index: Int
+    var win: Bool
+    var time: Int
+    var tries: Int
+    var performance: Int { return (triesWeight/tries)+(timeWeight/time)}
 }

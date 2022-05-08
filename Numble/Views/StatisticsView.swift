@@ -32,11 +32,19 @@ struct StatisticsView: View {
                         .font(.headline)
                         .fontWeight(.bold)
                     VStack(spacing: 5) {
-                        ForEach (0..<10) { index in
+                        ForEach (0..<11) { index in
                             HStack {
                                 let indexNum = "\(index + 1)".paddingToLeft(upTo: 2, using: " ")
-                                Text(indexNum)
-                                .font(.system(size: 16, weight: .medium, design: .monospaced))
+
+                                if index == 10 {
+                                    Text(" x")
+                                        .font(.system(size: 16, weight: .medium, design: .monospaced))
+                                        .foregroundColor(Color(red: 0.537, green: 0.008, blue: 0.243))
+                                } else {
+                                    Text(indexNum)
+                                        .font(.system(size: 16, weight: .medium, design: .monospaced))
+                                }
+                                
                                 if dm.currentStats.frequencies[index] == 0 {
                                     Rectangle()
                                         .fill(Color.wrong)
@@ -47,10 +55,9 @@ struct StatisticsView: View {
                                         )
                                 } else {
                                     if let maxValue = dm.currentStats.frequencies.max() {
-                                        Rectangle()
-                                            .fill((dm.tryIdx == index && dm.gameOver)
-                                                  ? Color.correct
-                                                  : Color.wrong)
+                                        if (dm.tryIdx == index && index < 10 && dm.currentStats.gamesArray[dm.currentStats.gamesArray.count-1].win  && dm.gameOver) {
+                                            Rectangle()
+                                            .fill(Color.correct)
                                             .frame(width: CGFloat(dm.currentStats.frequencies[index])
                                                    / CGFloat(maxValue) * Global.tileSize * 5,
                                             height: 20)
@@ -60,13 +67,38 @@ struct StatisticsView: View {
                                                     .padding(.horizontal,5),
                                                 alignment: .trailing
                                             )
+                                        } else if (index == 10 && !dm.currentStats.gamesArray[dm.currentStats.gamesArray.count-1].win && dm.gameOver) {
+                                            Rectangle()
+                                            .fill(Color(red: 0.537, green: 0.008, blue: 0.243))
+                                            .frame(width: CGFloat(dm.currentStats.frequencies[index])
+                                                   / CGFloat(maxValue) * Global.tileSize * 5,
+                                            height: 20)
+                                            .overlay(
+                                                Text("\(dm.currentStats.frequencies[index])")
+                                                    .foregroundColor(.white)
+                                                    .padding(.horizontal,5),
+                                                alignment: .trailing
+                                            )
+                                        } else {
+                                            Rectangle()
+                                            .fill(Color.wrong)
+                                            .frame(width: CGFloat(dm.currentStats.frequencies[index])
+                                                   / CGFloat(maxValue) * Global.tileSize * 5,
+                                            height: 20)
+                                            .overlay(
+                                                Text("\(dm.currentStats.frequencies[index])")
+                                                    .foregroundColor(.white)
+                                                    .padding(.horizontal,5),
+                                                alignment: .trailing
+                                            )
+                                        }
                                     }
                                 }
                                 Spacer()
                             }
                         }
                     }
-                    Spacer()
+                    
                     .navigationViewStyle(.stack)
                         .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
@@ -106,86 +138,3 @@ struct SingleStat: View {
         }
     }
 }
-
-//var body: some View {
-//        VStack(spacing: 10) {
-//            HStack{
-//                Spacer()
-//                Button {
-//                    withAnimation {
-//                        dm.showStats.toggle()
-//                    }
-//                } label: {
-//                    Text("X")
-//                }
-//                .offset(x:20, y: 10)
-//            }
-//            Text("STATISTICS")
-//                .font(.headline)
-//                .fontWeight(.bold)
-//            HStack(alignment: .top) {
-//                SingleStat(value: dm.currentStats.games,
-//                           text: "Played")
-//                if dm.currentStats.games != 0 {
-//                    SingleStat(value: Int(100 * dm.currentStats.wins/dm.currentStats.games),
-//                               text: "Win %")
-//                }
-//                SingleStat(value: dm.currentStats.streak,
-//                           text: "Current Streak")
-//                    .fixedSize(horizontal: false, vertical: true)
-//                SingleStat(value: dm.currentStats.maxStreak,
-//                           text: "MAX Streak")
-//                    .fixedSize(horizontal: false, vertical: true)
-//            }
-//            Text("GUESS DISTRIBUTION")
-//                .font(.headline)
-//                .fontWeight(.bold)
-//            VStack(spacing: 5) {
-//                ForEach (0..<10) { index in
-//                    HStack {
-//                        let indexNum = "\(index + 1)".paddingToLeft(upTo: 2, using: " ")
-//                        Text(indexNum)
-//                        .font(.system(size: 16, weight: .medium, design: .monospaced))
-//                        if dm.currentStats.frequencies[index] == 0 {
-//                            Rectangle()
-//                                .fill(Color.wrong)
-//                                .frame(width: 22, height: 20)
-//                                .overlay(
-//                                 Text("0")
-//                                    .foregroundColor(.white)
-//                                )
-//                        } else {
-//                            if let maxValue = dm.currentStats.frequencies.max() {
-//                                Rectangle()
-//                                    .fill((dm.tryIdx == index && dm.gameOver)
-//                                          ? Color.correct
-//                                          : Color.wrong)
-//                                    .frame(width: CGFloat(dm.currentStats.frequencies[index])
-//                                    / CGFloat(maxValue) * 200,
-//                                    height: 20)
-//                                    .overlay(
-//                                        Text("\(dm.currentStats.frequencies[index])")
-//                                            .foregroundColor(.white)
-//                                            .padding(.horizontal,5),
-//                                        alignment: .trailing
-//                                    )
-//                            }
-//                        }
-//                        Spacer()
-//                    }
-//                }
-//            }
-//            Spacer()
-//        }
-//        .padding(.horizontal, 40)
-//        .frame(width: 320, height: 500)
-//        .background(RoundedRectangle(cornerRadius: 15)
-//                        .fill(Color.systemBackground))
-//        .padding()
-//        .shadow(color: .black.opacity(0.3), radius: 10)
-//        .offset(y: -70)
-//        .onAppear{
-//            print(dm.currentStats)
-//        }
-//    }
-//}

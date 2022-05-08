@@ -45,7 +45,7 @@ class NumbleDm: ObservableObject {
    func resetDefaults() {
        guesses = []
        tryIdx = 0
-       timeElapsed = 0
+       timeElapsed = 1
        currentNum = ""
 //       for index in 0...9 {
        guesses.append(Guess(index: tryIdx))
@@ -63,6 +63,7 @@ class NumbleDm: ObservableObject {
     }
     
     func enterNumber() {
+        inPlay = false
         if currentNum == selectedNum {
             gameOver = true
             setScoreColors()
@@ -76,9 +77,9 @@ class NumbleDm: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.3) {
                 self.showStats.toggle()
             }
-            currentStats.update(win: true, index: tryIdx)
+            currentStats.update(didWin: true, winIdx: tryIdx, winTime: Int(timeElapsed))
             currentNum = ""
-            inPlay = false
+//            inPlay = false
         } else {
             if tryIdx == 0 {
                 startTimer()
@@ -91,12 +92,13 @@ class NumbleDm: ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
                     self.guesses.append(Guess(index: self.tryIdx))
                     self.guesses[self.tryIdx - 1].bg = Color.wrong
+                    self.inPlay = true
                 }
             } else if tryIdx == 9 {
                 setScoreColors()
                 revealScores(for: tryIdx)
                 gameOver = true
-                inPlay = false
+//                inPlay = false
                 print("You lose")
                 DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
                     self.guesses[self.tryIdx - 1].bg = Color.wrong
@@ -105,10 +107,11 @@ class NumbleDm: ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.3) {
                     self.showStats.toggle()
                 }
-                currentStats.update(win: false)
+                currentStats.update(didWin: false, winIdx: tryIdx, winTime: Int(timeElapsed))
                 showToast(with: selectedNum)
             }
         }
+        print(currentStats)
     }
     
     func updateRow() {
@@ -161,7 +164,7 @@ class NumbleDm: ObservableObject {
     
    var timer = Timer()
    
-   @Published var timeElapsed = 0.1
+   @Published var timeElapsed = 1
    
    func startTimer() {
        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in

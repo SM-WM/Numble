@@ -9,7 +9,6 @@ import SwiftUI
 struct GameView: View {
     @EnvironmentObject var dm: NumbleDm
     @State private var showHelp = false
-    @State private var showSettings = false
     
     var body: some View {
 
@@ -24,9 +23,9 @@ struct GameView: View {
                     HStack (spacing: Global.colSpacing) {
                         
                         Text("\(dm.tryIdx)")
-                            .font(.system(size: 24, weight: .semibold, design: .monospaced))
+                            .font(.system(size: 20, weight: .semibold, design: .monospaced))
                             .foregroundColor(Color.correct)
-                            .frame(width: Global.tileSize, height: Global.rowSpacing*3.5, alignment: .center)
+                            .frame(width: Global.tileSize, height: Global.rowSpacing*3, alignment: .center)
                             .overlay(
                                     RoundedRectangle(cornerRadius: Global.cornerRadius)
                                         .stroke(Color.primary, lineWidth: Global.lineWidth)
@@ -34,16 +33,16 @@ struct GameView: View {
                         
                         Text("\(dm.timeString)")
                                 .foregroundColor(Color.red)
-                                .frame(width: (Global.tileSize*3) + (Global.colSpacing*2), height: Global.rowSpacing*3.5, alignment: .center)
-                                .font(.system(size: 24, weight: .regular, design: .monospaced))
+                                .frame(width: (Global.tileSize*3) + (Global.colSpacing*2), height: Global.rowSpacing*3, alignment: .center)
+                                .font(.system(size: 20, weight: .regular, design: .monospaced))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: Global.cornerRadius)
                                             .stroke(Color.primary, lineWidth: Global.lineWidth)
                                         )
                     }
                     Text("score")
-                        .frame(width: Global.tileSize, height: Global.rowSpacing*3.5, alignment: .center)
-                        .font(.system(size: 16, weight: .light))
+                        .frame(width: Global.tileSize, height: Global.rowSpacing*3, alignment: .center)
+                        .font(.system(size: 20, weight: .light))
                         .overlay(
                                 RoundedRectangle(cornerRadius: Global.cornerRadius)
                                     .stroke(Color.primary, lineWidth: Global.lineWidth)
@@ -54,13 +53,12 @@ struct GameView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: Global.rowSpacing) {
                         ForEach(0..<$dm.guesses.count, id: \.self) { index in
-//                            if ($dm.guesses.count <= 10)  {
-                                GuessView(guess: $dm.guesses[index])
-//                            }
+                            GuessView(guess: $dm.guesses[index])
                         }
                         
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.vertical, 5)
                 }
                 
                 keyboardView()
@@ -73,12 +71,10 @@ struct GameView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         HStack {
-                            Button {
-                                showSettings.toggle()
-                            } label: {
+                            NavigationLink(destination: SettingsView()) {
                                 Label("Settings", systemImage: "gearshape.fill")
                             }
-                            .padding(.leading)
+                            .padding()
                             
                             Button {
                                 showHelp.toggle()
@@ -99,28 +95,20 @@ struct GameView: View {
                                 Label("Statistics", systemImage: "chart.bar")
                             }
                             .padding()
-//                            Button{
-//                                withAnimation{dm.showStats.toggle()}
-//                            } label: {
-//                                Image(systemName: "chart.bar")
-//                            }
-                            
-                            if !dm.inPlay{
+                            if !dm.inPlay && dm.gameOver{
                                 Button {
                                     dm.newGame()
                                 } label: {
                                     Text("New")
                                         .foregroundColor(.primary)
                                 }
+                                .padding(.trailing)
                             }
                         }
                     }
                 }
                 .sheet(isPresented: $showHelp) {
                     HelpView()
-                }
-                .sheet(isPresented: $showSettings) {
-                    SettingsView()
                 }
                 .overlay(alignment: .top){
                     if let toastText = dm.toastText{
@@ -129,10 +117,6 @@ struct GameView: View {
                     }
                 }
         }
-            
-//            if dm.showStats{
-//                StatisticsView()
-//            }
 
     }
 
