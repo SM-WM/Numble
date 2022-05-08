@@ -29,6 +29,7 @@ class NumbleDm: ObservableObject {
 // MARK: - Setup
    func newGame() {
        inPlay = true
+       gameOver = false
        resetDefaults()
        selectRandomNumber()
        print("selected number is \(selectedNum)")
@@ -65,7 +66,6 @@ class NumbleDm: ObservableObject {
     func enterNumber() {
         inPlay = false
         if currentNum == selectedNum {
-            gameOver = true
             setScoreColors()
             revealScores(for: tryIdx)
             print("You Win")
@@ -76,6 +76,7 @@ class NumbleDm: ObservableObject {
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.3) {
                 self.showStats.toggle()
+                self.gameOver = true
             }
             currentStats.update(didWin: true, winIdx: tryIdx, winTime: Int(timeElapsed))
             currentNum = ""

@@ -20,6 +20,9 @@ extension Color {
     static var unused: Color {
         Color(UIColor(named: "unused")!)
     }
+    static var burgundy: Color {
+        Color(red: 0.537, green: 0.008, blue: 0.243)
+    }
     static var systemBackground: Color {
         Color(.systemBackground)
     }

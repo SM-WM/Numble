@@ -12,25 +12,78 @@ struct StatisticsView: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: 15) {
+            
+            VStack(spacing: 15) {
+                VStack {
                     HStack(alignment: .top) {
                         SingleStat(value: dm.currentStats.games,
                                    text: "Played")
+                        .frame(width: Global.tileSize)
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.primary, lineWidth: 1)
+                                )
                         if dm.currentStats.games != 0 {
                             SingleStat(value: Int(100 * dm.currentStats.wins/dm.currentStats.games),
                                        text: "Win %")
+                            .frame(width: Global.tileSize)
+                            .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.primary, lineWidth: 1)
+                                    )
                         }
                         SingleStat(value: dm.currentStats.streak,
                                    text: "Current Streak")
-                            .fixedSize(horizontal: false, vertical: true)
+//                                .fixedSize(horizontal: false, vertical: true)
+                        .frame(width: Global.tileSize)
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.primary, lineWidth: 1)
+                                )
                         SingleStat(value: dm.currentStats.maxStreak,
                                    text: "MAX Streak")
-                            .fixedSize(horizontal: false, vertical: true)
+//                                .fixedSize(horizontal: false, vertical: true)
+                            .frame(width: Global.tileSize)
+                            .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.primary, lineWidth: 1)
+                                    )
+                            
                     }
+                    HStack(alignment: .top) {
+                        if dm.currentStats.games != 0 {
+                            let performances: [Int] = dm.currentStats.gamesArray.map( {$0.performance })
+                            SingleStat(value: performances[dm.currentStats.games-1],
+                                       text: "Current XP")
+//                                    .fixedSize(horizontal: false, vertical: true)
+                            .frame(width: Global.tileSize*2)
+                            .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.primary, lineWidth: 1)
+                                    )
+                            
+                            SingleStat(value: performances.reduce(0, +)/performances.count,
+                                       text: "Average XP")
+//                                    .fixedSize(horizontal: false, vertical: true)
+                            .frame(width: Global.tileSize*2)
+                            .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.primary, lineWidth: 1)
+                                    )
+                        }
+                    }
+                }
+                .padding(.top, 20)
+                
+                ScrollView (showsIndicators: false) {
+                    
+                    Divider()
+                        .frame(width: Global.tileSize*2, height: 1)
+                        .background(Color.blue)
+                        .padding(.vertical, 15)
                     Text("GUESS DISTRIBUTION")
-                        .font(.headline)
-                        .fontWeight(.bold)
+                        .font(.system(size: 18.0, weight: .semibold, design: .monospaced))
+                    
                     VStack(spacing: 5) {
                         ForEach (0..<11) { index in
                             HStack {
@@ -39,14 +92,14 @@ struct StatisticsView: View {
                                 if index == 10 {
                                     Text(" x")
                                         .font(.system(size: 16, weight: .medium, design: .monospaced))
-                                        .foregroundColor(Color(red: 0.537, green: 0.008, blue: 0.243))
+                                        .foregroundColor(Color.burgundy)
                                 } else {
                                     Text(indexNum)
                                         .font(.system(size: 16, weight: .medium, design: .monospaced))
                                 }
                                 
                                 if dm.currentStats.frequencies[index] == 0 {
-                                    Rectangle()
+                                    RoundedRectangle(cornerRadius: 5)
                                         .fill(Color.wrong)
                                         .frame(width: 22, height: 20)
                                         .overlay(
@@ -56,7 +109,7 @@ struct StatisticsView: View {
                                 } else {
                                     if let maxValue = dm.currentStats.frequencies.max() {
                                         if (dm.tryIdx == index && index < 10 && dm.currentStats.gamesArray[dm.currentStats.gamesArray.count-1].win  && dm.gameOver) {
-                                            Rectangle()
+                                            RoundedRectangle(cornerRadius: 5)
                                             .fill(Color.correct)
                                             .frame(width: CGFloat(dm.currentStats.frequencies[index])
                                                    / CGFloat(maxValue) * Global.tileSize * 5,
@@ -68,10 +121,10 @@ struct StatisticsView: View {
                                                 alignment: .trailing
                                             )
                                         } else if (index == 10 && !dm.currentStats.gamesArray[dm.currentStats.gamesArray.count-1].win && dm.gameOver) {
-                                            Rectangle()
-                                            .fill(Color(red: 0.537, green: 0.008, blue: 0.243))
+                                            RoundedRectangle(cornerRadius: 5)
+                                                .fill(Color.burgundy)
                                             .frame(width: CGFloat(dm.currentStats.frequencies[index])
-                                                   / CGFloat(maxValue) * Global.tileSize * 5,
+                                                   / CGFloat(maxValue) * Global.tileSize * 4.5,
                                             height: 20)
                                             .overlay(
                                                 Text("\(dm.currentStats.frequencies[index])")
@@ -80,7 +133,7 @@ struct StatisticsView: View {
                                                 alignment: .trailing
                                             )
                                         } else {
-                                            Rectangle()
+                                            RoundedRectangle(cornerRadius: 5)
                                             .fill(Color.wrong)
                                             .frame(width: CGFloat(dm.currentStats.frequencies[index])
                                                    / CGFloat(maxValue) * Global.tileSize * 5,
@@ -99,19 +152,34 @@ struct StatisticsView: View {
                         }
                     }
                     
+                    Divider()
+                        .frame(width: Global.tileSize*2, height: 1)
+                        .background(Color.blue)
+                        .padding(.vertical, 15)
+                    
+                    Text("XP HISTORY")
+                        .font(.system(size: 18.0, weight: .semibold, design: .monospaced))
+                    
+                    Image(systemName: "chart.xyaxis.line")
+                        .font(Font.system(size: 250, weight: .ultraLight))
+                        .foregroundColor(Color.burgundy)
+                        .padding(.horizontal)
+                        .padding(.bottom, 270)
+                    
                     .navigationViewStyle(.stack)
                         .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .principal) {
                             Text("Statistics")
                                 .font(.system(size: 30.0, weight: .thin, design: .monospaced))
-                                .foregroundColor(.primary)
+                                .foregroundColor(Color.blue)
                         }
                         
                     }
                 }
             }
-            .padding(20)
+            
+            .padding(.horizontal, 20)
         }
     }
 }
@@ -130,11 +198,17 @@ struct SingleStat: View {
     var body: some View{
         VStack{
             Text("\(value)")
-                .font(.largeTitle)
+                .font(.system(size: 24.0, weight: .thin, design: .monospaced))
+                .foregroundColor(.primary)
+                .padding(.top, 5)
+                .padding(.horizontal, 5)
             Text(text)
                 .font(.caption)
-                .frame(width: 50)
+                .foregroundColor(Color.burgundy)
                 .multilineTextAlignment(.center)
+                .padding(.bottom, 5)
+                .padding(.horizontal, 5)
         }
+        .frame(height: Global.tileSize*1.25, alignment: .top)
     }
 }

@@ -18,7 +18,7 @@ struct Statistic: Codable {
     }
 
     var wins: Int {
-        frequencies.reduce(0, +)
+        frequencies[0..<Global.allowedTries].reduce(0, +)
     }
     
     mutating func update(didWin: Bool, winIdx: Int? = nil, winTime: Int) {

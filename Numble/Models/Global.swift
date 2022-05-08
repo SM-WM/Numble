@@ -18,5 +18,5 @@ class Global {
     
     //MARK: Game Variables
     static var level: Int = 4
-    
+    static var allowedTries: Int = 10
 }

@@ -22,7 +22,7 @@ struct GameView: View {
                 HStack (spacing: Global.colSpacing*3) {
                     HStack (spacing: Global.colSpacing) {
                         
-                        Text("\(dm.tryIdx)")
+                        Text("\(dm.tryIdx+1)")
                             .font(.system(size: 20, weight: .semibold, design: .monospaced))
                             .foregroundColor(Color.correct)
                             .frame(width: Global.tileSize, height: Global.rowSpacing*3, alignment: .center)
@@ -32,7 +32,7 @@ struct GameView: View {
                                     )
                         
                         Text("\(dm.timeString)")
-                                .foregroundColor(Color.red)
+                            .foregroundColor(Color.red)
                                 .frame(width: (Global.tileSize*3) + (Global.colSpacing*2), height: Global.rowSpacing*3, alignment: .center)
                                 .font(.system(size: 20, weight: .regular, design: .monospaced))
                                 .overlay(
@@ -41,8 +41,9 @@ struct GameView: View {
                                         )
                     }
                     Text("score")
+                        .foregroundColor(Color.blue)
                         .frame(width: Global.tileSize, height: Global.rowSpacing*3, alignment: .center)
-                        .font(.system(size: 20, weight: .light))
+                        .font(.system(size: 18, weight: .semibold))
                         .overlay(
                                 RoundedRectangle(cornerRadius: Global.cornerRadius)
                                     .stroke(Color.primary, lineWidth: Global.lineWidth)
@@ -94,15 +95,15 @@ struct GameView: View {
                             NavigationLink(destination: StatisticsView(), isActive: $dm.showStats) {
                                 Label("Statistics", systemImage: "chart.bar")
                             }
-                            if !dm.inPlay && dm.gameOver{
-                                Button {
-                                    dm.newGame()
-                                } label: {
-                                    Text("New")
-                                        .foregroundColor(.primary)
-                                }
-                                .padding(.trailing)
-                            }
+//                            if !dm.inPlay && dm.gameOver{
+//                                Button {
+//                                    dm.newGame()
+//                                } label: {
+//                                    Text("New")
+//                                        .foregroundColor(.primary)
+//                                }
+//                                .padding(.trailing)
+//                            }
                         }
                     }
                 }

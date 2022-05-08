@@ -53,25 +53,48 @@ struct keyboardView: View {
                 .disabled(dm.disableKeyboard)
                 .opacity(dm.disableKeyboard ? 0.6 : 1)
                 
-                // Enter button
-                Button {
-                    dm.enterNumber()
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.unused)
-                            .frame(width: 76, height: 60)
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.primary, lineWidth: 2)
-                            .frame(width: 76, height: 60)
-                        Text("⏎")
-                            .font(.system(size: 24))
-                            .frame(width: 76, height: 60)
-                            .foregroundColor(Color.primary)
+                if dm.gameOver{
+                    // New Game button
+                    Button {
+                        dm.newGame()
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.systemBackground)
+                                .frame(width: 76, height: 60)
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.primary, lineWidth: 2)
+                                .frame(width: 76, height: 60)
+                            Text("New")
+                                .font(.system(size: 24, weight: .semibold))
+                                .frame(width: 76, height: 60)
+                                .foregroundColor(Color.correct)
+                        }
                     }
+                    .padding(.trailing)
+                } else {
+                    // Enter button
+                    Button {
+                        dm.enterNumber()
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.unused)
+                                .frame(width: 76, height: 60)
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.primary, lineWidth: 2)
+                                .frame(width: 76, height: 60)
+                            Text("⏎")
+                                .font(.system(size: 24))
+                                .frame(width: 76, height: 60)
+                                .foregroundColor(Color.primary)
+                        }
+                    }
+                    .disabled(dm.currentNum.count < 4 || !dm.inPlay)
+                    .opacity(dm.currentNum.count < 4 || !dm.inPlay ? 0.6 : 1)
                 }
-                .disabled(dm.currentNum.count < 4 || !dm.inPlay)
-                .opacity(dm.currentNum.count < 4 || !dm.inPlay ? 0.6 : 1)
+                
+                
             }
         }
     }
