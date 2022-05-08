@@ -87,15 +87,15 @@ struct GameView: View {
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack{
-//                            NavigationLink(destination: StatisticsView()) {
-//                                Label("Statistics", systemImage: "chart.bar")
-//                            }
-//                            .padding()
-                            Button{
-                                withAnimation{dm.showStats.toggle()}
-                            } label: {
-                                Image(systemName: "chart.bar")
+                            NavigationLink(destination: StatisticsView()) {
+                                Label("Statistics", systemImage: "chart.bar")
                             }
+                            .padding()
+//                            Button{
+//                                withAnimation{dm.showStats.toggle()}
+//                            } label: {
+//                                Image(systemName: "chart.bar")
+//                            }
                             
                             if !dm.inPlay{
                                 Button {
