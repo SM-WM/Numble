@@ -25,11 +25,18 @@ struct ChartView: UIViewRepresentable {
     
     func formatDataSet(dataSet: LineChartDataSet){
         dataSet.colors = [.darkGray]
+        dataSet.drawCirclesEnabled = false
+        dataSet.drawValuesEnabled = false
     }
     
     func formatXAxis(xAxis: XAxis) {
             xAxis.labelPosition = .bottom
+            xAxis.drawLabelsEnabled = true
         }
+    
+    func formatLegend(legend: Legend) {
+        legend.enabled = false
+    }
     
 
 }
