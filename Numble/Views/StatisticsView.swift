@@ -4,7 +4,7 @@
 //
 //  Created by Walter Mwaniki on 5/1/22.
 //
-
+import Charts
 import SwiftUI
 
 struct StatisticsView: View {
@@ -23,6 +23,7 @@ struct StatisticsView: View {
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.primary, lineWidth: 1)
                                 )
+                        .fixedSize(horizontal: false, vertical: true)
                         if dm.currentStats.games != 0 {
                             SingleStat(value: Int(100 * dm.currentStats.wins/dm.currentStats.games),
                                        text: "Win %")
@@ -31,6 +32,7 @@ struct StatisticsView: View {
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.primary, lineWidth: 1)
                                     )
+                            .fixedSize(horizontal: false, vertical: true)
                         }
                         SingleStat(value: dm.currentStats.streak,
                                    text: "Current Streak")
@@ -39,6 +41,7 @@ struct StatisticsView: View {
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.primary, lineWidth: 1)
                                 )
+                        .fixedSize(horizontal: false, vertical: true)
                         SingleStat(value: dm.currentStats.maxStreak,
                                    text: "MAX Streak")
                             .frame(width: Global.tileSize, height: Global.tileSize*1.25, alignment: .top)
@@ -46,6 +49,7 @@ struct StatisticsView: View {
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.primary, lineWidth: 1)
                                     )
+                            .fixedSize(horizontal: false, vertical: true)
                             
                     }
                     HStack(alignment: .top) {
@@ -58,6 +62,7 @@ struct StatisticsView: View {
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.primary, lineWidth: 1)
                                     )
+                            .fixedSize(horizontal: false, vertical: true)
                             
                             SingleStat(value: dm.currentStats.performances.reduce(0, +)/dm.currentStats.games,
                                        text: "Average XP")
@@ -66,6 +71,7 @@ struct StatisticsView: View {
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.primary, lineWidth: 1)
                                     )
+                            .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }
@@ -93,7 +99,7 @@ struct StatisticsView: View {
                                     Text(indexNum)
                                         .font(.system(size: 16, weight: .medium, design: .monospaced))
                                 }
-                                
+
                                 if dm.currentStats.frequencies[index] == 0 {
                                     RoundedRectangle(cornerRadius: 5)
                                         .fill(Color.wrong)
@@ -155,12 +161,10 @@ struct StatisticsView: View {
                     
                     Text("XP HISTORY")
                         .font(.system(size: 18.0, weight: .semibold, design: .monospaced))
-                    
-                    Image(systemName: "chart.xyaxis.line")
-                        .font(Font.system(size: 250, weight: .ultraLight))
-                        .foregroundColor(Color.burgundy)
-                        .padding(.horizontal)
-                        .padding(.bottom, 270)
+
+                    ChartView(entries:dm.currentStats.dataEntries())
+                        .frame(height: 300)
+                            .padding()
                     
                     .navigationViewStyle(.stack)
                         .navigationBarTitleDisplayMode(.inline)
@@ -185,6 +189,7 @@ struct StatisticsView_Previews: PreviewProvider {
         StatisticsView()
            // .previewDevice("iPhone 13 Pro")
             .environmentObject(NumbleDm())
+        
     }
 }
 

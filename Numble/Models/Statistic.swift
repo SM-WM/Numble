@@ -4,7 +4,7 @@
 //
 //  Created by Srashta Maharjan on 5/5/22.
 //
-
+import Charts
 import Foundation
 
 struct Statistic: Codable {
@@ -23,6 +23,10 @@ struct Statistic: Codable {
     
     var performances: [Int] {
         gamesArray.map( {$0.performance })
+    }
+    
+    func dataEntries() -> [ChartDataEntry]{
+        return gamesArray.map{ChartDataEntry(x: Double($0.index), y: Double($0.performance))}
     }
     
     mutating func update(didWin: Bool, winIdx: Int? = nil, winTime: Int) {
