@@ -131,3 +131,6 @@ Numble is a number game where the player needs to guess a 4 digit number in mult
    
    <img src="https://media.tenor.com/images/139f74fdc2ed59214205df2d60147831/tenor.gif" width=250 ><br>
    
+   ### Sprint 3 - Unit 12 & 13 Progress GIF
+   
+   <img src="https://github.com/SM-WM/Numble/blob/main/demo4x.gif?raw=true" width=400 ><br>
