@@ -18,7 +18,7 @@ struct StatisticsView: View {
                     HStack(alignment: .top) {
                         SingleStat(value: dm.currentStats.games,
                                    text: "Played")
-                        .frame(width: Global.tileSize)
+                        .frame(width: Global.tileSize, height: Global.tileSize*1.25, alignment: .top)
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.primary, lineWidth: 1)
@@ -26,7 +26,7 @@ struct StatisticsView: View {
                         if dm.currentStats.games != 0 {
                             SingleStat(value: Int(100 * dm.currentStats.wins/dm.currentStats.games),
                                        text: "Win %")
-                            .frame(width: Global.tileSize)
+                            .frame(width: Global.tileSize, height: Global.tileSize*1.25, alignment: .top)
                             .overlay(
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.primary, lineWidth: 1)
@@ -34,14 +34,14 @@ struct StatisticsView: View {
                         }
                         SingleStat(value: dm.currentStats.streak,
                                    text: "Current Streak")
-                        .frame(width: Global.tileSize)
+                        .frame(width: Global.tileSize, height: Global.tileSize*1.25, alignment: .top)
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.primary, lineWidth: 1)
                                 )
                         SingleStat(value: dm.currentStats.maxStreak,
                                    text: "MAX Streak")
-                            .frame(width: Global.tileSize)
+                            .frame(width: Global.tileSize, height: Global.tileSize*1.25, alignment: .top)
                             .overlay(
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.primary, lineWidth: 1)
@@ -50,20 +50,18 @@ struct StatisticsView: View {
                     }
                     HStack(alignment: .top) {
                         if dm.currentStats.games != 0 {
-                            let performances: [Int] = dm.currentStats.gamesArray.map( {$0.performance })
-                            SingleStat(value: performances[dm.currentStats.games-1],
-                                       text: "Current XP")
-//                                    .fixedSize(horizontal: false, vertical: true)
-                            .frame(width: Global.tileSize*2)
+                            let xpCaption = dm.gameOver ? "Current XP" : "Previous XP"
+                            SingleStat(value: dm.currentStats.performances[dm.currentStats.games-1],
+                                       text: xpCaption)
+                            .frame(width: Global.tileSize*2, height: Global.tileSize, alignment: .center)
                             .overlay(
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.primary, lineWidth: 1)
                                     )
                             
-                            SingleStat(value: performances.reduce(0, +)/performances.count,
+                            SingleStat(value: dm.currentStats.performances.reduce(0, +)/dm.currentStats.games,
                                        text: "Average XP")
-//                                    .fixedSize(horizontal: false, vertical: true)
-                            .frame(width: Global.tileSize*2)
+                            .frame(width: Global.tileSize*2, height: Global.tileSize, alignment: .center)
                             .overlay(
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.primary, lineWidth: 1)
@@ -207,6 +205,5 @@ struct SingleStat: View {
                 .padding(.bottom, 5)
                 .padding(.horizontal, 5)
         }
-        .frame(height: Global.tileSize*1.25, alignment: .top)
     }
 }

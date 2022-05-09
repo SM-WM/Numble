@@ -21,6 +21,10 @@ struct Statistic: Codable {
         frequencies[0..<Global.allowedTries].reduce(0, +)
     }
     
+    var performances: [Int] {
+        gamesArray.map( {$0.performance })
+    }
+    
     mutating func update(didWin: Bool, winIdx: Int? = nil, winTime: Int) {
         let newGame = Game(index: games, win: didWin, time: winTime, tries: winIdx! + 1)
         gamesArray.append(newGame)
@@ -53,8 +57,7 @@ struct Statistic: Codable {
     }
 }
 
-let timeWeight = 36000
-let triesWeight = 10
+let goodTime = 30*600 //thirty minutes
 
 struct Game: Codable {
     var index: Int
@@ -62,5 +65,8 @@ struct Game: Codable {
     var time: Int
     var tries: Int
     var performance: Int {
-        return (win ? (triesWeight/tries)+(timeWeight/time) : (triesWeight/tries)+(timeWeight/time) * 0.25}
+//        let exactP = (triesWeight/tries)+(timeWeight/time)
+        let exactP = ((Global.allowedTries*10/(tries))+(goodTime/time))*10
+        return (win ? exactP : exactP / 4)
+    }
 }

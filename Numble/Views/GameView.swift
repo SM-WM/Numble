@@ -75,13 +75,14 @@ struct GameView: View {
                             NavigationLink(destination: SettingsView()) {
                                 Label("Settings", systemImage: "gearshape.fill")
                             }
-                            .padding()
+                            .padding(.leading)
                             
                             Button {
                                 showHelp.toggle()
                             } label: {
                                 Label("Help", systemImage: "questionmark.circle")
                             }
+                            .padding(.trailing)
                         }
                     }
                     ToolbarItem(placement: .principal) {

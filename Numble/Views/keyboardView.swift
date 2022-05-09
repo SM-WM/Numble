@@ -53,7 +53,7 @@ struct keyboardView: View {
                 .disabled(dm.disableKeyboard)
                 .opacity(dm.disableKeyboard ? 0.6 : 1)
                 
-                if dm.gameOver{
+                if !dm.inPlay{
                     // New Game button
                     Button {
                         dm.newGame()
@@ -89,8 +89,8 @@ struct keyboardView: View {
                                 .foregroundColor(Color.primary)
                         }
                     }
-                    .disabled(dm.currentNum.count < 4 || !dm.inPlay)
-                    .opacity(dm.currentNum.count < 4 || !dm.inPlay ? 0.6 : 1)
+                    .disabled(dm.currentNum.count < 4 || dm.awaitingScores )
+                    .opacity(dm.currentNum.count < 4 || dm.awaitingScores ? 0.6 : 1)
                 }
                 
                 

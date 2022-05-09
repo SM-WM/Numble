@@ -19,16 +19,19 @@ class NumbleDm: ObservableObject {
     
 //  Control booleans
     var inPlay = false
-    var disableKeyboard: Bool { !inPlay || currentNum.count == Global.level }
+    var awaitingScores = false
+    var disableKeyboard: Bool { awaitingScores || currentNum.count == Global.level }
     
     init() {
         currentStats = Statistic.loadStat()
-        gameOver = true
+        inPlay = false
+        awaitingScores = true
     }
     
 // MARK: - Setup
    func newGame() {
        inPlay = true
+       awaitingScores = false
        gameOver = false
        resetDefaults()
        selectRandomNumber()
@@ -63,7 +66,7 @@ class NumbleDm: ObservableObject {
     }
     
     func enterNumber() {
-        inPlay = false
+        awaitingScores = true
         if currentNum == selectedNum {
             setScoreColors()
             revealScores(for: tryIdx)
@@ -76,9 +79,11 @@ class NumbleDm: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.3) {
                 self.showStats.toggle()
                 self.gameOver = true
+                self.inPlay = false
             }
             currentStats.update(didWin: true, winIdx: tryIdx, winTime: Int(timeElapsed))
             currentNum = ""
+            print(currentStats.performances)
         } else {
             if tryIdx < Global.allowedTries - 1 {
                 setScoreColors()
@@ -88,7 +93,7 @@ class NumbleDm: ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.2) {
                     self.guesses.append(Guess(index: self.tryIdx))
                     self.guesses[self.tryIdx - 1].bg = Color.wrong
-                    self.inPlay = true
+                    self.awaitingScores = false
                 }
             } else if tryIdx == 9 {
                 setScoreColors()
@@ -100,6 +105,7 @@ class NumbleDm: ObservableObject {
                     self.timer.invalidate()
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + (self.level + 1.0) * 0.3) {
+                    self.inPlay = false
                     self.showStats.toggle()
                 }
                 currentStats.update(didWin: false, winIdx: tryIdx, winTime: Int(timeElapsed))
