@@ -33,13 +33,13 @@ struct keyboardView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
                             .fill(Color.unused)
-                            .frame(width: 76, height: 60)
+                            .frame(width: Global.keyboardWidth*1.8, height: Global.keyboardWidth*3/2)
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(Color.primary, lineWidth: 2)
-                            .frame(width: 76, height: 60)
+                            .frame(width: Global.keyboardWidth*1.8, height: Global.keyboardWidth*3/2)
                         Image(systemName: "delete.backward")
-                            .font(.system(size: 20))
-                            .frame(width: 76, height: 60)
+                            .font(.system(size: 20*Global.sf))
+                            .frame(width: Global.keyboardWidth*1.8, height: Global.keyboardWidth*3/2)
                             .foregroundColor(Color.primary)
                     }
                 }
@@ -61,13 +61,13 @@ struct keyboardView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
                                 .fill(Color.systemBackground)
-                                .frame(width: 76, height: 60)
+                                .frame(width: Global.keyboardWidth*1.8, height: Global.keyboardWidth*3/2)
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(Color.burgundy, lineWidth: 2)
-                                .frame(width: 76, height: 60)
+                                .frame(width: Global.keyboardWidth*1.8, height: Global.keyboardWidth*3/2)
                             Text("New")
-                                .font(.system(size: 20, weight: .semibold))
-                                .frame(width: 76, height: 60)
+                                .font(.system(size: 20*Global.sf, weight: .semibold))
+                                .frame(width: Global.keyboardWidth*1.8, height: Global.keyboardWidth*3/2)
                                 .foregroundColor(Color.correct)
                         }
                     }
@@ -79,13 +79,13 @@ struct keyboardView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
                                 .fill(Color.unused)
-                                .frame(width: 76, height: 60)
+                                .frame(width: Global.keyboardWidth*1.8, height: Global.keyboardWidth*3/2)
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(Color.primary, lineWidth: 2)
-                                .frame(width: 76, height: 60)
+                                .frame(width: Global.keyboardWidth*1.8, height: Global.keyboardWidth*3/2)
                             Text("⏎")
                                 .font(.system(size: 24))
-                                .frame(width: 76, height: 60)
+                                .frame(width: Global.keyboardWidth*1.8, height: Global.keyboardWidth*3/2)
                                 .foregroundColor(Color.primary)
                         }
                     }
@@ -102,6 +102,7 @@ struct keyboardView: View {
 struct keyboardView_Previews: PreviewProvider {
     static var previews: some View {
         keyboardView()
+            .previewDevice("iPad Pro (11-inch) (3rd generation)")
             .environmentObject(NumbleDm())
     }
 }

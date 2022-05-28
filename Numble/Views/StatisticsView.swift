@@ -13,7 +13,7 @@ struct StatisticsView: View {
     var body: some View {
         NavigationView {
             
-            VStack(spacing: 15) {
+            VStack(alignment: .center, spacing: 15) {
                 VStack {
                     HStack(alignment: .top) {
                         SingleStat(value: dm.currentStats.games,
@@ -85,10 +85,10 @@ struct StatisticsView: View {
                         .padding(.vertical, 15)
                     Text("GUESS DISTRIBUTION")
                         .font(.system(size: 18.0, weight: .semibold, design: .monospaced))
-                    
                     VStack(spacing: 5) {
+                        
                         ForEach (0..<11) { index in
-                            HStack {
+                            HStack() {
                                 let indexNum = "\(index + 1)".paddingToLeft(upTo: 2, using: " ")
 
                                 if index == 10 {
@@ -114,7 +114,7 @@ struct StatisticsView: View {
                                             RoundedRectangle(cornerRadius: 5)
                                             .fill(Color.correct)
                                             .frame(width: CGFloat(dm.currentStats.frequencies[index])
-                                                   / CGFloat(maxValue) * Global.tileSize * 5,
+                                                   / CGFloat(maxValue) * Global.minDimension*0.8,
                                             height: 20)
                                             .overlay(
                                                 Text("\(dm.currentStats.frequencies[index])")
@@ -126,7 +126,7 @@ struct StatisticsView: View {
                                             RoundedRectangle(cornerRadius: 5)
                                                 .fill(Color.burgundy)
                                             .frame(width: CGFloat(dm.currentStats.frequencies[index])
-                                                   / CGFloat(maxValue) * Global.tileSize * 4.5,
+                                                   / CGFloat(maxValue) * Global.minDimension*0.8,
                                             height: 20)
                                             .overlay(
                                                 Text("\(dm.currentStats.frequencies[index])")
@@ -138,7 +138,7 @@ struct StatisticsView: View {
                                             RoundedRectangle(cornerRadius: 5)
                                             .fill(Color.wrong)
                                             .frame(width: CGFloat(dm.currentStats.frequencies[index])
-                                                   / CGFloat(maxValue) * Global.tileSize * 5,
+                                                   / CGFloat(maxValue) * Global.minDimension * 0.8,
                                             height: 20)
                                             .overlay(
                                                 Text("\(dm.currentStats.frequencies[index])")
@@ -166,7 +166,6 @@ struct StatisticsView: View {
                         .frame(height: 300)
                             .padding()
                     
-                    .navigationViewStyle(.stack)
                         .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .principal) {
@@ -181,12 +180,14 @@ struct StatisticsView: View {
             
             .padding(.horizontal, 20)
         }
+        .navigationViewStyle(.stack)
     }
 }
 
 struct StatisticsView_Previews: PreviewProvider {
     static var previews: some View {
         StatisticsView()
+            .previewDevice("iPhone 11")
            // .previewDevice("iPhone 13 Pro")
             .environmentObject(NumbleDm())
         

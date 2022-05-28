@@ -112,7 +112,7 @@ class NumbleDm: ObservableObject {
                 showToast(with: selectedNum)
             }
         }
-        print(currentStats)
+//        print(currentStats)
     }
     
     func updateRow() {

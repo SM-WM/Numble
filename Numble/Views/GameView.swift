@@ -63,53 +63,53 @@ struct GameView: View {
                 }
                 
                 keyboardView()
-                    .padding(.top)
+                    .padding(.vertical, 10)
             }
-
-            
-            .navigationViewStyle(.stack)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        HStack {
-                            NavigationLink(destination: SettingsView()) {
-                                Label("Settings", systemImage: "gearshape.fill")
-                            }
-                            .padding(.leading)
-                            
-                            Button {
-                                showHelp.toggle()
-                            } label: {
-                                Label("Help", systemImage: "questionmark.circle")
-                            }
-                            .padding(.trailing)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack {
+                        NavigationLink(destination: SettingsView()) {
+                            Label("Settings", systemImage: "gearshape.fill")
                         }
-                    }
-                    ToolbarItem(placement: .principal) {
-                        Text("Numble")
-                            .font(.system(size: 32.0, weight: .thin, design: .monospaced))
-                            .foregroundColor(.primary)
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        HStack{
-                            NavigationLink(destination: StatisticsView(), isActive: $dm.showStats) {
-                                Label("Statistics", systemImage: "chart.bar")
-                            }
-                            .padding()
+                        .padding(.leading)
+                        
+                        Button {
+                            showHelp.toggle()
+                        } label: {
+                            Label("Help", systemImage: "questionmark.circle")
                         }
+                        .padding(.trailing)
                     }
                 }
-                .sheet(isPresented: $showHelp) {
-                    HelpView()
+                ToolbarItem(placement: .principal) {
+                    Text("Numble")
+                        .font(.system(size: 32.0, weight: .thin, design: .monospaced))
+                        .foregroundColor(.primary)
                 }
-                .overlay(alignment: .top){
-                    if let toastText = dm.toastText{
-                        ToastView(toastText: toastText)
-                            .offset(y: 20)
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack{
+                        NavigationLink(destination: StatisticsView(), isActive: $dm.showStats) {
+                            Label("Statistics", systemImage: "chart.bar")
+                        }
+                        .padding()
                     }
                 }
+            }
+            .sheet(isPresented: $showHelp) {
+                HelpView()
+            }
+            .overlay(alignment: .top){
+                if let toastText = dm.toastText{
+                    ToastView(toastText: toastText)
+                        .offset(y: 20)
+                }
+            }
+                
         }
+            .navigationViewStyle(.stack)
+                
 
     }
 
@@ -118,7 +118,8 @@ struct GameView: View {
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         GameView()
-            .previewDevice("iPhone 13 Pro")
+            .previewDevice("iPhone 11")
             .environmentObject(NumbleDm())
+            .previewInterfaceOrientation(.portrait)
     }
 }
